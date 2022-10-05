@@ -23,17 +23,17 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.UpArrow) == true)
-        {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }
-        else if (Input.GetKey(KeyCode.DownArrow) == true)
-        {
-            transform.Translate(Vector3.back * speed * Time.deltaTime);
-        }
-        else if (Input.GetKey(KeyCode.Space) == true)
-        {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
-        }
+        //else if (Input.GetKey(KeyCode.UpArrow) == true)
+        //{
+        //    transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        //}
+        //else if (Input.GetKey(KeyCode.DownArrow) == true)
+        //{
+        //    transform.Translate(Vector3.back * speed * Time.deltaTime);
+        //}
+        //else if (Input.GetKey(KeyCode.Space) == true)
+        //{
+        //    transform.Translate(Vector3.up * speed * Time.deltaTime);
+        //}
     }
 }
