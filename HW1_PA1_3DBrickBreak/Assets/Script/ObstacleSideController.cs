@@ -13,8 +13,8 @@ public class ObstacleSideController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        minX = 12.72f;
-        maxX = 21.17f;
+        minX = 12.7f;
+        maxX = 21.15f;
         moveSpeed = 10.0f;
     }
 

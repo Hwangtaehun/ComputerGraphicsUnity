@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // xÁÂÇ¥ Á¦ÇÑ
         if(Input.GetKey(KeyCode.LeftArrow) == true)
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);

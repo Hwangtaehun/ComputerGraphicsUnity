@@ -28,7 +28,7 @@ public class BallController : MonoBehaviour
             ballRd.isKinematic = false;
             ballRd.AddForce(speed, 0, speed);
         }
-        else if(transform.position.y < -4.5)
+        else if(transform.position.x < 16)
         {
             Destroy(gameObject, 0.2f);
         }
@@ -76,7 +76,11 @@ public class BallController : MonoBehaviour
     {
         if (Coll.gameObject.name == "Small")
         {
-            transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+            if(this.transform.localScale.x >= 0.5f)
+            {
+                transform.localScale = this.transform.localScale * 0.9f;
+            }
+            //transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         }
     }
 }
