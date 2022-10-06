@@ -1,0 +1,82 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BallController : MonoBehaviour
+{
+    private Rigidbody ballRd;
+    private bool isBallInPlay = false;
+    public float speed = 200.0f;
+    Vector3 startPos;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Time.timeScale = 0.0f;
+        ballRd = GetComponent<Rigidbody>();
+        startPos = transform.position;
+        //startPos = new Vector3(0, 0, 0);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Space)==true && isBallInPlay == false)
+        {
+            Time.timeScale = 1.0f;
+            isBallInPlay = true;
+            ballRd.isKinematic = false;
+            ballRd.AddForce(speed, 0, speed);
+        }
+        else if(transform.position.y < -4.5)
+        {
+            Destroy(gameObject, 0.2f);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("WALL"))
+        {
+            Vector3 currPos = collision.transform.position;
+
+            Vector3 incomVec = currPos - startPos;
+            Vector3 normalVec = collision.contacts[0].normal;
+            Vector3 reflectVec = Vector3.Reflect(incomVec, normalVec);
+            reflectVec = reflectVec.normalized;
+
+            ballRd.AddForce(reflectVec * speed);
+        }
+        else if (collision.gameObject.CompareTag("BLOCK"))
+        {
+            Vector3 currPos = collision.transform.position;
+
+            Vector3 incomVec = currPos - startPos;
+            Vector3 normalVec = collision.contacts[0].normal;
+            Vector3 reflectVec = Vector3.Reflect(incomVec, normalVec);
+            reflectVec = reflectVec.normalized;
+
+            ballRd.AddForce(reflectVec * speed * 1.1f);
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            Vector3 currPos = collision.transform.position;
+
+            Vector3 incomVec = currPos - startPos;
+            Vector3 normalVec = collision.contacts[0].normal;
+            Vector3 reflectVec = Vector3.Reflect(incomVec, normalVec);
+            reflectVec = reflectVec.normalized;
+
+            ballRd.AddForce(reflectVec * speed);
+        }
+        startPos = transform.position;
+    }
+
+    private void OnTriggerEnter(Collider Coll)
+    {
+        if (Coll.gameObject.name == "Small")
+        {
+            transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+        }
+    }
+}
