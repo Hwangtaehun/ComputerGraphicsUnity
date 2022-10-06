@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minX: 12.72
   maxX: 21.16
-  moveSpeed: 5
+  moveSpeed: 20
 --- !u!136 &78808211
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1549,4 +1549,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minX: 0
   maxX: 0
-  moveSpeed: 7
+  moveSpeed: 2

@@ -76,7 +76,7 @@ public class BallController : MonoBehaviour
     {
         if (Coll.gameObject.name == "Small")
         {
-            transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+            transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         }
     }
 }
