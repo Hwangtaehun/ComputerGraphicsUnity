@@ -15,6 +15,8 @@ public class BlockGenerator : MonoBehaviour
             int px = Random.Range(13, 21);
             int pz = Random.Range(93, 95);
             block.transform.position = new Vector3(px, -4.3f, pz);
+            GameObject manager = GameObject.Find("GameManager");
+            manager.GetComponent<GameManager>().Count();
         }
     }
 }

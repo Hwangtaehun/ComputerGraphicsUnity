@@ -23,14 +23,19 @@ public class BallController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space)==true && isBallInPlay == false)
         {
+            GameObject manager = GameObject.Find("GameManager");
+            manager.GetComponent<GameManager>().GameExplain();
             Time.timeScale = 1.0f;
             isBallInPlay = true;
             ballRd.isKinematic = false;
             ballRd.AddForce(speed, 0, speed);
         }
-        else if(transform.position.x < 16)
+        else if(transform.position.z < 86)
         {
             Destroy(gameObject, 0.2f);
+            isBallInPlay = false;
+            GameObject manager = GameObject.Find("GameManager");
+            manager.GetComponent<GameManager>().LoseBall();
         }
     }
 
@@ -56,7 +61,10 @@ public class BallController : MonoBehaviour
             Vector3 reflectVec = Vector3.Reflect(incomVec, normalVec);
             reflectVec = reflectVec.normalized;
 
-            ballRd.AddForce(reflectVec * speed * 1.1f);
+            ballRd.AddForce(reflectVec * speed);
+
+            GameObject manager = GameObject.Find("GameManager");
+            manager.GetComponent<GameManager>().Break();
         }
         else if (collision.gameObject.CompareTag("Player"))
         {

@@ -15,12 +15,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // xÁÂÇ¥ Á¦ÇÑ
-        if(Input.GetKey(KeyCode.LeftArrow) == true)
+        if (Input.GetKey(KeyCode.LeftArrow) == true && this.transform.position.x >= 13.0f)
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.RightArrow) == true)
+        else if (Input.GetKey(KeyCode.RightArrow) == true && this.transform.position.x <= 21.0f)
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
