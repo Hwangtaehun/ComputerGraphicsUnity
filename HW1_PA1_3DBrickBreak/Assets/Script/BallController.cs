@@ -7,6 +7,8 @@ public class BallController : MonoBehaviour
     private Rigidbody ballRd;
     private bool isBallInPlay = false;
     public float speed = 200.0f;
+    //public Transform player;
+   // public GameManager gm;
     Vector3 startPos;
 
     // Start is called before the first frame update
@@ -14,14 +16,14 @@ public class BallController : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         ballRd = GetComponent<Rigidbody>();
-        startPos = transform.position;
-        //startPos = new Vector3(0, 0, 0);
+        //transform.position = player.position + new Vector3(0, 0, 0.5f);
+        startPos = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (Input.GetKey(KeyCode.Space)==true && isBallInPlay == false)
+        if (/*Input.GetKey(KeyCode.Space)==true &&*/ isBallInPlay == false)
         {
             GameObject manager = GameObject.Find("GameManager");
             manager.GetComponent<GameManager>().GameExplain();
@@ -30,13 +32,13 @@ public class BallController : MonoBehaviour
             ballRd.isKinematic = false;
             ballRd.AddForce(speed, 0, speed);
         }
-        else if(transform.position.z < 86)
-        {
-            Destroy(gameObject, 0.2f);
-            isBallInPlay = false;
-            GameObject manager = GameObject.Find("GameManager");
-            manager.GetComponent<GameManager>().LoseBall();
-        }
+        //else if(transform.position.z < 86)
+        //{
+        //    Destroy(gameObject, 0.2f);
+        //    isBallInPlay = false;
+        //    GameObject manager = GameObject.Find("GameManager");
+        //    manager.GetComponent<GameManager>().LoseBall();
+        //}
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -89,6 +91,14 @@ public class BallController : MonoBehaviour
                 transform.localScale = this.transform.localScale * 0.9f;
             }
             //transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+        }
+        else if(Coll.gameObject.name == "DeadZone")
+        {
+            Destroy(gameObject, 0.2f);
+            isBallInPlay = false;
+            GameObject manager = GameObject.Find("GameManager");
+            manager.GetComponent<GameManager>().UpdateLife(-1);
+            //gm.UpdateLife(-1);
         }
     }
 }

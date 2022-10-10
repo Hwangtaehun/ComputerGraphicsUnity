@@ -8,20 +8,22 @@ public class GameManager : MonoBehaviour
 {
     private Text timerText;
     private Text scoreText;
-    private float time = 120.0f;
+    private float time = 61.0f;
     private int score = 0;
     private int blockCnt = 0;
-    private int ballCnt = 1;
     private bool is_gameOver = false;
     public GameObject gameOverPopup;
     public GameObject gameClearPopup;
     public GameObject gameExplainPopup;
+    public int ballCnt;
+    public Text livesText;
 
     // Start is called before the first frame update
     void Start()
     {
         this.timerText = GameObject.Find("Time").GetComponent<Text>();
         this.scoreText = GameObject.Find("Score").GetComponent<Text>();
+        livesText.text = "남은 횟수 " + ballCnt;
     }
 
     // Update is called once per frame
@@ -58,11 +60,11 @@ public class GameManager : MonoBehaviour
             min = (int)time / 60;
             sce = (int)time % 60;
 
-            if (min > 0)
+            if (min == 0)
             {
-                this.timerText.text = "시간 " + min + "분" + sce + "초";
+                this.timerText.text = "시간 " + sce + "초";
             }
-            this.timerText.text = "시간 " + sce + "초";
+            this.timerText.text = "시간 " + min + "분" + sce + "초";
         }
         else
         {
@@ -81,10 +83,16 @@ public class GameManager : MonoBehaviour
         blockCnt--;
     }
 
-    public void LoseBall()
+    public void UpdateLife(int ChangeInLives)
     {
-        ballCnt--;
+        ballCnt += ChangeInLives;
+        livesText.text = "남은 횟수 " + ballCnt;
     }
+
+    //public void LoseBall()
+    //{
+    //    ballCnt--;
+    //}
 
     public void GameClear()
     {
