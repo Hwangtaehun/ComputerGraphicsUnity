@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     private Text timerText;
     private Text scoreText;
-    private float time = 61.0f;
+    private float time = 60.0f;
     private int score = 0;
     private int blockCnt = 0;
     private bool is_gameOver = false;
@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        time += 1;
         this.timerText = GameObject.Find("Time").GetComponent<Text>();
         this.scoreText = GameObject.Find("Score").GetComponent<Text>();
         livesText.text = "³²Àº È½¼ö " + ballCnt;
@@ -51,14 +52,12 @@ public class GameManager : MonoBehaviour
     public void IncTimer()
     {
         
-        int min = 0, sce = 0;
 
         if(time > 0)
         {
             time -= Time.deltaTime;
-
-            min = (int)time / 60;
-            sce = (int)time % 60;
+            int min = (int)time / 60;
+            int sce = (int)time % 60;
 
             if (min == 0)
             {

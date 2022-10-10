@@ -22,7 +22,7 @@ public class BlockController : MonoBehaviour
         {
             GameObject manager = GameObject.Find("GameManager");
             manager.GetComponent<GameManager>().IncScore();
-            Destroy(gameObject, 0.2f);
+            Destroy(gameObject);
         }
     }
 }

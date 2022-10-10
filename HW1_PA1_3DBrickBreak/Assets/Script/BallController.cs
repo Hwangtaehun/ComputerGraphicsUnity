@@ -7,7 +7,7 @@ public class BallController : MonoBehaviour
     private Rigidbody ballRd;
     private bool isBallInPlay = false;
     public float speed = 200.0f;
-    //public Transform player;
+    public Transform player;
    // public GameManager gm;
     Vector3 startPos;
 
@@ -16,29 +16,28 @@ public class BallController : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         ballRd = GetComponent<Rigidbody>();
-        //transform.position = player.position + new Vector3(0, 0, 0.5f);
+        transform.position = player.position + new Vector3(0, 0, 0.5f);
         startPos = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
     public void Update()
     {
-        if (/*Input.GetKey(KeyCode.Space)==true &&*/ isBallInPlay == false)
+        if (Input.GetKey(KeyCode.Space) == true && isBallInPlay == false)
         {
             GameObject manager = GameObject.Find("GameManager");
             manager.GetComponent<GameManager>().GameExplain();
             Time.timeScale = 1.0f;
+            transform.position = player.position + new Vector3(0, 0, 0.5f);
             isBallInPlay = true;
             ballRd.isKinematic = false;
             ballRd.AddForce(speed, 0, speed);
         }
-        //else if(transform.position.z < 86)
-        //{
-        //    Destroy(gameObject, 0.2f);
-        //    isBallInPlay = false;
-        //    GameObject manager = GameObject.Find("GameManager");
-        //    manager.GetComponent<GameManager>().LoseBall();
-        //}
+        else if (transform.position.z < 86)
+        {
+            transform.position = new Vector3(17.0f, -5.0f, 85.0f);
+            transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -94,7 +93,6 @@ public class BallController : MonoBehaviour
         }
         else if(Coll.gameObject.name == "DeadZone")
         {
-            Destroy(gameObject, 0.2f);
             isBallInPlay = false;
             GameObject manager = GameObject.Find("GameManager");
             manager.GetComponent<GameManager>().UpdateLife(-1);
