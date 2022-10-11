@@ -30,6 +30,7 @@ public class BulletController : MonoBehaviour
         if(coll.collider.tag == "ENEMY")
         {
             Destroy(gameObject, 0.2f);
+            Destroy(coll.gameObject, 0.5f); //실린더(적) 삭제
         }
     }
 }

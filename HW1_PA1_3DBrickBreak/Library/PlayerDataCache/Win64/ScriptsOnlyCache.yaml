@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - BallController
     - BlockController
     - BlockGenerator
+    - GameDirector
     - GameManager
     - ObstacleSideController
     - PlayerController
@@ -22,6 +23,59 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
   sceneClasses:
+    Assets/Scenes/OpeningSence.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1482}
+    - Class: 114
+      Script: {instanceID: 2004}
+    - Class: 114
+      Script: {instanceID: 2302}
+    - Class: 114
+      Script: {instanceID: 2414}
+    - Class: 114
+      Script: {instanceID: 2580}
+    - Class: 114
+      Script: {instanceID: 2768}
+    - Class: 114
+      Script: {instanceID: 2858}
+    - Class: 114
+      Script: {instanceID: 3566}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/PlaySence.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -124,7 +178,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: b6e97bacd180995eefdc625464d50624
+      Hash: 772e631e72d6c48e19047e16ed899deb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -280,7 +334,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: afc5b93a7b192de2dcb3832fe35a5c7e
+      Hash: c7be8404a518457b848a1add4e576ccf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BallController
@@ -568,5 +622,6 @@ ScriptsOnlyBuild:
     className: TouchInputModule
   platform: 19
   scenePathNames:
+  - Assets/Scenes/OpeningSence.unity
   - Assets/Scenes/PlaySence.unity
   playerPath: "C:/Users/r283/Desktop/Github/ComputerGraphicsUnity/C077044_\uD669\uD0DC\uD6C8/HW1_PA1_3DBrickBreak.exe"
