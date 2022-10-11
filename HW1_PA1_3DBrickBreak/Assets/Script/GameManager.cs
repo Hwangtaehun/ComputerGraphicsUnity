@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     private Text scoreText;
     private float time = 60.0f;
     private int score = 0;
-    private int blockCnt = 0;
     private bool is_gameOver = false;
     public GameObject gameOverPopup;
     public GameObject gameClearPopup;
@@ -33,27 +32,27 @@ public class GameManager : MonoBehaviour
         IncTimer();
         //Debug.Log(time.ToString("F1"));
 
-        if(ballCnt == 0 && blockCnt != 0)
+        if (ballCnt == 0 && score < 50)
         {
             GameOver();
         }
-        else if(blockCnt == 0)
+        else if (score >= 50)
         {
-            Invoke("GameClear", 1.0f);
+            GameClear();
         }
     }
 
     public void IncScore()
     {
-        score += 1;
+        score += 10;
         this.scoreText.text = "Á¡¼ö " + score.ToString();
     }
 
     public void IncTimer()
     {
-        
 
-        if(time > 0)
+
+        if (time > 0)
         {
             time -= Time.deltaTime;
             int min = (int)time / 60;
@@ -69,17 +68,7 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
-       
-    }
 
-    public void Count()
-    {
-        blockCnt++;
-    }
-
-    public void Break()
-    {
-        blockCnt--;
     }
 
     public void UpdateLife(int ChangeInLives)
@@ -105,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if(is_gameOver == false)
+        if (is_gameOver == false)
         {
             gameOverPopup.SetActive(true);
             Time.timeScale = 0.0f;
