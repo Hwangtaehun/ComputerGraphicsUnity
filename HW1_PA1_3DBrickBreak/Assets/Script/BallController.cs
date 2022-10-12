@@ -4,45 +4,48 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    private Rigidbody ballRd;
-    private bool isBallInPlay = false;
-    public float speed = 200.0f;
-    public Transform player;
+    //private Rigidbody ballRd;
+    //private bool isBallInPlay = false;
+    // public Transform player;
     // public GameManager gm;
+    public float speed = 200.0f;
     Vector3 startPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 0.0f;
-        ballRd = GetComponent<Rigidbody>();
-        transform.position = player.position + new Vector3(0, 0, 0.5f);
+        //Time.timeScale = 0.0f;
+        //ballRd = GetComponent<Rigidbody>();
+        //transform.position = player.position + new Vector3(0, 0, 0.5f);
         startPos = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
     public void Update()
     {
-        Vector3 dir = new Vector3(speed, 0, speed);
+        //Vector3 dir = new Vector3(speed, 0, speed);
 
-        if (Input.GetKey(KeyCode.Space) == true && isBallInPlay == false)
-        {
-            GameObject manager = GameObject.Find("GameManager");
-            manager.GetComponent<GameManager>().GameExplain();
-            Time.timeScale = 1.0f;
-            isBallInPlay = true;
-            ballRd.isKinematic = false;
-            play(dir);
-        }
-        else if (transform.position.z < 86)
-        {
-            transform.position = new Vector3(17.0f, -5.0f, 85.0f);
-            transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
-        }
+        //if (transform.position.z < 86)
+        //{
+        //    transform.position = new Vector3(17.0f, -5.0f, 85.0f);
+        //    transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
+        //}
+        //else if (Input.GetKey(KeyCode.Space) == true && isBallInPlay == false)
+        //{
+        //    Rigidbody ballRd = GetComponent<Rigidbody>();
+        //    GameObject manager = GameObject.Find("GameManager");
+        //    manager.GetComponent<GameManager>().GameExplain();
+        //    Time.timeScale = 1.0f;
+        //    isBallInPlay = true;
+        //    ballRd.isKinematic = false;
+        //    play(dir);
+        //}
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        Rigidbody ballRd = GetComponent<Rigidbody>();
+
         if (collision.gameObject.CompareTag("WALL"))
         {
             Vector3 currPos = collision.transform.position;
@@ -95,16 +98,24 @@ public class BallController : MonoBehaviour
         }
         else if (Coll.gameObject.name == "DeadZone")
         {
-            isBallInPlay = false;
+            //isBallInPlay = false;
+            GameObject ball = GameObject.Find("BallGenerator");
+            ball.GetComponent<BallGenerator>().ballDestroy();
             GameObject manager = GameObject.Find("GameManager");
             manager.GetComponent<GameManager>().UpdateLife(-1);
+            Destroy(gameObject);
             //gm.UpdateLife(-1);
         }
     }
 
     public void play(Vector3 dir)
     {
-        transform.position = player.position + new Vector3(0, 0, 0.75f);
+        //transform.position = player.position + new Vector3(0, 0, 0.75f);
+        Rigidbody ballRd = GetComponent<Rigidbody>();
+        GameObject manager = GameObject.Find("GameManager");
+        manager.GetComponent<GameManager>().GameExplain();
+        //isBallInPlay = true;
+        ballRd.isKinematic = false;
         ballRd.AddForce(dir);
     }
 }

@@ -8,14 +8,14 @@ public class GameManager : MonoBehaviour
 {
     private Text timerText;
     private Text scoreText;
+    private Text livesText;
     private float time = 60.0f;
     private int score = 0;
+    private int ballCnt = 3;
     private bool is_gameOver = false;
     public GameObject gameOverPopup;
     public GameObject gameClearPopup;
     public GameObject gameExplainPopup;
-    public int ballCnt;
-    public Text livesText;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         time += 1;
         this.timerText = GameObject.Find("Time").GetComponent<Text>();
         this.scoreText = GameObject.Find("Score").GetComponent<Text>();
+        this.livesText = GameObject.Find("Lives").GetComponent<Text>();
         livesText.text = "³²Àº È½¼ö " + ballCnt;
     }
 

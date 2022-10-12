@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - BallController
+    - BallGenerator
     - BlockGenerator
     - GameDirector
     - GameManager
@@ -132,6 +133,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3148}
     - Class: 114
       Script: {instanceID: 3938}
+    - Class: 114
+      Script: {instanceID: 17292}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -175,7 +178,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 772e631e72d6c48e19047e16ed899deb
+      Hash: b6e97bacd180995eefdc625464d50624
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -331,7 +334,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: c7be8404a518457b848a1add4e576ccf
+      Hash: afc5b93a7b192de2dcb3832fe35a5c7e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BallController
@@ -611,6 +614,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: da8b9606981e18513d238587968268d3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BallGenerator
   platform: 5
   scenePathNames:
   - Assets/Scenes/OpeningSence.unity
