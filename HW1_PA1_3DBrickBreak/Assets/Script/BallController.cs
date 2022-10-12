@@ -41,6 +41,7 @@ public class BallController : MonoBehaviour
         //    ballRd.isKinematic = false;
         //    play(dir);
         //}
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -100,14 +101,17 @@ public class BallController : MonoBehaviour
         else if (Coll.gameObject.name == "DeadZone")
         {
             //isBallInPlay = false;
-            GameObject ball = GameObject.Find("BallGenerator");
-            ball.GetComponent<BallGenerator>().ballDestroy();
             Destroy(gameObject);
-            if(bonusBall == 0)
+           // Debug.Log(bonusBall);
+            if (bonusBall == 0)
             {
+                GameObject ball = GameObject.Find("BallGenerator");
+                ball.GetComponent<BallGenerator>().ballDestroy();
                 GameObject manager = GameObject.Find("GameManager");
                 manager.GetComponent<GameManager>().UpdateLife(-1);
             }
+            else
+                bonusBall--;
             //gm.UpdateLife(-1);
         }
     }
@@ -128,11 +132,9 @@ public class BallController : MonoBehaviour
         if(bonusBall < 2)
         {
             bonusBall++;
+            //GameObject ball = GameObject.Find("BallGenerator");
+            //ball.GetComponent<BallGenerator>().makeBall();
         }
     }
 
-    public void BallSize()
-    {
-        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-    }
 }

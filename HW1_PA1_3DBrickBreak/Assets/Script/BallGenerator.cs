@@ -22,7 +22,6 @@ public class BallGenerator : MonoBehaviour
             Time.timeScale = 1.0f;
             isBallInPlay = true;
             GameObject ball = Instantiate(ballPrefab, transform.position, transform.rotation);
-
             Vector3 dir = new Vector3(speed, 0, speed);
             BallController ballController = ball.GetComponent<BallController>();
             ballController.play(dir);
@@ -32,6 +31,15 @@ public class BallGenerator : MonoBehaviour
     public void ballDestroy()
     {
         isBallInPlay = false;
+    }
+
+    public void makeBall()
+    {
+        GameObject ball = Instantiate(ballPrefab, transform.position, transform.rotation);
+        Vector3 dir = new Vector3(speed, 0, speed);
+        BallController ballController = ball.GetComponent<BallController>();
+        ballController.play(dir);
+        ballController.BonusBall();
     }
 
     //private void OnTriggerEnter(Collider Coll)

@@ -27,19 +27,27 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider Coll)
     {
-        if(Coll.gameObject.CompareTag("LIFE"))
+        GameObject ball = GameObject.Find("BallGenerator");
+
+        if (Coll.gameObject.CompareTag("LIFE"))
         {
-            Debug.Log("생명");
+            GameObject manager = GameObject.Find("GameManager");
+            manager.GetComponent<GameManager>().UpdateLife(1);
             Destroy(Coll.gameObject);
         }
         else if(Coll.gameObject.CompareTag("ADD"))
         {
-            Debug.Log("공추가");
+            ball.GetComponent<BallGenerator>().makeBall();
             Destroy(Coll.gameObject);
         }
         else if (Coll.gameObject.CompareTag("SIZE"))
         {
-            Debug.Log("공원래대로");
+            if(transform.localScale.x < 4.5f)
+            {
+                float x = transform.localScale.x;
+                x *= 1.1f;
+                transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
+            }
             Destroy(Coll.gameObject);
         }
     }

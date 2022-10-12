@@ -6,15 +6,9 @@ public class ItemGenerator : MonoBehaviour
 {
     public GameObject lifeaddPrefab;
     public GameObject balladdPrefab;
-    public GameObject ballsizePrefab;
+    public GameObject playersizePrefab;
     public float span = 5.0f;
     private float time = 0.0f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -36,9 +30,9 @@ public class ItemGenerator : MonoBehaviour
                 item = Instantiate(balladdPrefab);
                 item.transform.position = new Vector3(x, -4.341f, 98.38f);
             }
-            else if(dice > 6)
+            else if (dice > 6)
             {
-                item = Instantiate(ballsizePrefab);
+                item = Instantiate(playersizePrefab);
                 item.transform.position = new Vector3(x, -4.341f, 98.38f);
             }
         }
