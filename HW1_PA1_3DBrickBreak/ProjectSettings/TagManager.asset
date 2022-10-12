@@ -9,7 +9,7 @@ TagManager:
   - BLOCK
   - LIFE
   - ADD
-  - SIZE
+  - MINUS
   layers:
   - Default
   - TransparentFX

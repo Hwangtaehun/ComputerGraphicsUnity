@@ -68,11 +68,11 @@ public class BallController : MonoBehaviour
             Vector3 reflectVec = Vector3.Reflect(incomVec, normalVec);
             reflectVec = reflectVec.normalized;
 
-            ballRd.AddForce(reflectVec * speed * 1.2f);
+            ballRd.AddForce(reflectVec * speed);
 
             Destroy(collision.gameObject);
             GameObject manager = GameObject.Find("GameManager");
-            manager.GetComponent<GameManager>().IncScore();
+            manager.GetComponent<GameManager>().IncScore(10);
         }
         else if (collision.gameObject.CompareTag("Player"))
         {

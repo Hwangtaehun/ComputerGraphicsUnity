@@ -4,8 +4,10 @@ ScriptsOnlyBuild:
     - BallController
     - BallGenerator
     - BlockGenerator
+    - DownMove
     - GameDirector
     - GameManager
+    - ItemGenerator
     - ObstacleSideController
     - PlayerController
     Unity.Rider.Editor.dll:
@@ -47,19 +49,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1482}
     - Class: 114
-      Script: {instanceID: 2004}
+      Script: {instanceID: 2006}
     - Class: 114
-      Script: {instanceID: 2302}
+      Script: {instanceID: 2306}
     - Class: 114
-      Script: {instanceID: 2414}
+      Script: {instanceID: 2418}
     - Class: 114
-      Script: {instanceID: 2580}
+      Script: {instanceID: 2586}
     - Class: 114
-      Script: {instanceID: 2768}
+      Script: {instanceID: 2774}
     - Class: 114
-      Script: {instanceID: 2858}
+      Script: {instanceID: 2864}
     - Class: 114
-      Script: {instanceID: 3566}
+      Script: {instanceID: 3572}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -114,27 +116,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1520}
     - Class: 114
-      Script: {instanceID: 2004}
+      Script: {instanceID: 1692}
     - Class: 114
-      Script: {instanceID: 2302}
+      Script: {instanceID: 2006}
     - Class: 114
-      Script: {instanceID: 2414}
+      Script: {instanceID: 2018}
     - Class: 114
-      Script: {instanceID: 2580}
+      Script: {instanceID: 2306}
     - Class: 114
-      Script: {instanceID: 2658}
+      Script: {instanceID: 2418}
     - Class: 114
-      Script: {instanceID: 2768}
+      Script: {instanceID: 2502}
     - Class: 114
-      Script: {instanceID: 2858}
+      Script: {instanceID: 2586}
     - Class: 114
-      Script: {instanceID: 2884}
+      Script: {instanceID: 2664}
     - Class: 114
-      Script: {instanceID: 3148}
+      Script: {instanceID: 2774}
     - Class: 114
-      Script: {instanceID: 3938}
+      Script: {instanceID: 2864}
     - Class: 114
-      Script: {instanceID: 17292}
+      Script: {instanceID: 2890}
+    - Class: 114
+      Script: {instanceID: 3154}
+    - Class: 114
+      Script: {instanceID: 3944}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -226,6 +232,12 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
+      Hash: da8b9606981e18513d238587968268d3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BallGenerator
+  - hash:
+      serializedVersion: 2
       Hash: 300fd99066f8c288e85f5e81ce65fe34
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -248,6 +260,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Text
+  - hash:
+      serializedVersion: 2
+      Hash: 79a9c3f3e64993622b30211845bfd793
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItemGenerator
   - hash:
       serializedVersion: 2
       Hash: 91d258529db2b5060a913f2afcea1a21
@@ -302,6 +320,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshProUGUI
+  - hash:
+      serializedVersion: 2
+      Hash: 459b50185a167c1d210a783633c72823
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DownMove
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -614,12 +638,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
-  - hash:
-      serializedVersion: 2
-      Hash: da8b9606981e18513d238587968268d3
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BallGenerator
   platform: 5
   scenePathNames:
   - Assets/Scenes/OpeningSence.unity

@@ -40,14 +40,10 @@ public class PlayerController : MonoBehaviour
             ball.GetComponent<BallGenerator>().makeBall();
             Destroy(Coll.gameObject);
         }
-        else if (Coll.gameObject.CompareTag("SIZE"))
+        else if (Coll.gameObject.CompareTag("MINUS"))
         {
-            if(transform.localScale.x < 4.5f)
-            {
-                float x = transform.localScale.x;
-                x *= 1.1f;
-                transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
-            }
+            GameObject manager = GameObject.Find("GameManager");
+            manager.GetComponent<GameManager>().IncScore(-10);
             Destroy(Coll.gameObject);
         }
     }

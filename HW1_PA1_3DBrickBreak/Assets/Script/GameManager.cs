@@ -43,9 +43,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void IncScore()
+    public void IncScore(int ChangeScore)
     {
-        score += 10;
+        score += ChangeScore;
+        if (score < 0)
+            score = 0;
         this.scoreText.text = "Á¡¼ö " + score.ToString();
     }
 
