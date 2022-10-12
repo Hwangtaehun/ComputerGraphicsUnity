@@ -8,6 +8,7 @@ public class BallController : MonoBehaviour
     //private bool isBallInPlay = false;
     // public Transform player;
     // public GameManager gm;
+    private int bonusBall = 0;
     public float speed = 200.0f;
     Vector3 startPos;
 
@@ -101,9 +102,12 @@ public class BallController : MonoBehaviour
             //isBallInPlay = false;
             GameObject ball = GameObject.Find("BallGenerator");
             ball.GetComponent<BallGenerator>().ballDestroy();
-            GameObject manager = GameObject.Find("GameManager");
-            manager.GetComponent<GameManager>().UpdateLife(-1);
             Destroy(gameObject);
+            if(bonusBall == 0)
+            {
+                GameObject manager = GameObject.Find("GameManager");
+                manager.GetComponent<GameManager>().UpdateLife(-1);
+            }
             //gm.UpdateLife(-1);
         }
     }
@@ -117,5 +121,18 @@ public class BallController : MonoBehaviour
         //isBallInPlay = true;
         ballRd.isKinematic = false;
         ballRd.AddForce(dir);
+    }
+
+    public void BonusBall()
+    {
+        if(bonusBall < 2)
+        {
+            bonusBall++;
+        }
+    }
+
+    public void BallSize()
+    {
+        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 }

@@ -24,4 +24,23 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
     }
+
+    private void OnTriggerEnter(Collider Coll)
+    {
+        if(Coll.gameObject.CompareTag("LIFE"))
+        {
+            Debug.Log("생명");
+            Destroy(Coll.gameObject);
+        }
+        else if(Coll.gameObject.CompareTag("ADD"))
+        {
+            Debug.Log("공추가");
+            Destroy(Coll.gameObject);
+        }
+        else if (Coll.gameObject.CompareTag("SIZE"))
+        {
+            Debug.Log("공원래대로");
+            Destroy(Coll.gameObject);
+        }
+    }
 }

@@ -7,7 +7,9 @@ TagManager:
   - WALL
   - BALL
   - BLOCK
-  - DEAD
+  - LIFE
+  - ADD
+  - SIZE
   layers:
   - Default
   - TransparentFX
