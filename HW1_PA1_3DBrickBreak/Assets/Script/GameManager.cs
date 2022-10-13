@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         IncTimer();
-        //Debug.Log(time.ToString("F1"));
 
         if (ballCnt == 0 && score < 50)
         {
@@ -42,6 +41,8 @@ public class GameManager : MonoBehaviour
         {
             GameClear();
         }
+
+        //Debug.Log(time.ToString("F1"));
     }
 
     public void IncScore(int ChangeScore)

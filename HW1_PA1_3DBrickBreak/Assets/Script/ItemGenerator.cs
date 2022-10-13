@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ItemGenerator : MonoBehaviour
 {
+    private float span = 2.0f;
+    private float time = 0.0f;
     public GameObject lifeaddPrefab;
     public GameObject balladdPrefab;
     public GameObject scoreminusPrefab;
-    public float span = 5.0f;
-    private float time = 0.0f;
 
     // Update is called once per frame
     void Update()
