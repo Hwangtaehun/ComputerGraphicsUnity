@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private Text livesText;
     private float time = 60.0f;
     private int score = 0;
+    private int bonusballCnt = 0;
     private int ballCnt = 3;
     private bool is_gameOver = false;
     public GameObject gameOverPopup;
@@ -76,14 +77,26 @@ public class GameManager : MonoBehaviour
 
     public void UpdateLife(int ChangeInLives)
     {
-        ballCnt += ChangeInLives;
-        livesText.text = "³²Àº È½¼ö " + ballCnt;
+        if (bonusballCnt == 0)
+        {
+            ballCnt += ChangeInLives;
+            livesText.text = "³²Àº È½¼ö " + ballCnt;
+            GameObject ball = GameObject.Find("BallGenerator");
+            ball.GetComponent<BallGenerator>().ballDestroy();
+        }
+        else
+            bonusballCnt--;
     }
 
-    //public void LoseBall()
-    //{
-    //    ballCnt--;
-    //}
+    public void BonusBall()
+    {
+        if (bonusballCnt < 2)
+        {
+            GameObject ball = GameObject.Find("BallGenerator");
+            ball.GetComponent<BallGenerator>().makeBall();
+            bonusballCnt++;
+        }
+    }
 
     public void GameClear()
     {

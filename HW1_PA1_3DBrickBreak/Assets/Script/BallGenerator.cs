@@ -39,7 +39,8 @@ public class BallGenerator : MonoBehaviour
         Vector3 dir = new Vector3(speed, 0, speed);
         BallController ballController = ball.GetComponent<BallController>();
         ballController.play(dir);
-        ballController.BonusBall();
+        //GameObject manager = GameObject.Find("GameManager");
+        //manager.GetComponent<GameManager>().BonusBall();
     }
 
     //private void OnTriggerEnter(Collider Coll)

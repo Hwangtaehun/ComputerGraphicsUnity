@@ -8,7 +8,7 @@ public class BallController : MonoBehaviour
     //private bool isBallInPlay = false;
     // public Transform player;
     // public GameManager gm;
-    private int bonusBall = 0;
+    //private int bonusBall = 0;
     public float speed = 200.0f;
     Vector3 startPos;
 
@@ -101,17 +101,18 @@ public class BallController : MonoBehaviour
         else if (Coll.gameObject.name == "DeadZone")
         {
             //isBallInPlay = false;
+            GameObject manager = GameObject.Find("GameManager");
+            manager.GetComponent<GameManager>().UpdateLife(-1);
             Destroy(gameObject);
            // Debug.Log(bonusBall);
-            if (bonusBall == 0)
-            {
-                GameObject ball = GameObject.Find("BallGenerator");
-                ball.GetComponent<BallGenerator>().ballDestroy();
-                GameObject manager = GameObject.Find("GameManager");
-                manager.GetComponent<GameManager>().UpdateLife(-1);
-            }
-            else
-                bonusBall--;
+            //if (bonusBall == 0)
+            //{
+                
+            //    GameObject manager = GameObject.Find("GameManager");
+            //    manager.GetComponent<GameManager>().UpdateLife(-1);
+            //}
+            //else
+            //    bonusBall--;
             //gm.UpdateLife(-1);
         }
     }
@@ -127,14 +128,14 @@ public class BallController : MonoBehaviour
         ballRd.AddForce(dir);
     }
 
-    public void BonusBall()
-    {
-        if(bonusBall < 2)
-        {
-            bonusBall++;
-            //GameObject ball = GameObject.Find("BallGenerator");
-            //ball.GetComponent<BallGenerator>().makeBall();
-        }
-    }
+    //public void BonusBall()
+    //{
+    //    if(bonusBall < 2)
+    //    {
+    //        bonusBall++;
+    //        //GameObject ball = GameObject.Find("BallGenerator");
+    //        //ball.GetComponent<BallGenerator>().makeBall();
+    //    }
+    //}
 
 }

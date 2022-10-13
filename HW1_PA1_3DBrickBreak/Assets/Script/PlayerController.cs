@@ -27,22 +27,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider Coll)
     {
-        GameObject ball = GameObject.Find("BallGenerator");
+        GameObject manager = GameObject.Find("GameManager");
 
         if (Coll.gameObject.CompareTag("LIFE"))
-        {
-            GameObject manager = GameObject.Find("GameManager");
+        { 
             manager.GetComponent<GameManager>().UpdateLife(1);
             Destroy(Coll.gameObject);
         }
         else if(Coll.gameObject.CompareTag("ADD"))
         {
-            ball.GetComponent<BallGenerator>().makeBall();
+            manager.GetComponent<GameManager>().BonusBall();
             Destroy(Coll.gameObject);
         }
         else if (Coll.gameObject.CompareTag("MINUS"))
         {
-            GameObject manager = GameObject.Find("GameManager");
             manager.GetComponent<GameManager>().IncScore(-10);
             Destroy(Coll.gameObject);
         }

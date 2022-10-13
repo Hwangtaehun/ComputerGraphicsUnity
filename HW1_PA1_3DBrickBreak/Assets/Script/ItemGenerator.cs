@@ -20,8 +20,6 @@ public class ItemGenerator : MonoBehaviour
             GameObject item;
             int dice = Random.Range(1, 9);
             float x = Random.Range(12.48f, 21.4f);
-            //item = Instantiate(scoreminusPrefab);
-            //item.transform.position = new Vector3(x, -4.341f, 98.38f);
             if (dice <= 3)
             {
                 item = Instantiate(lifeaddPrefab);
@@ -37,6 +35,8 @@ public class ItemGenerator : MonoBehaviour
                 item = Instantiate(scoreminusPrefab);
                 item.transform.position = new Vector3(x, -4.341f, 98.38f);
             }
+            //item = Instantiate(balladdPrefab);
+            //item.transform.position = new Vector3(x, -4.341f, 98.38f);
         }
     }
 }
