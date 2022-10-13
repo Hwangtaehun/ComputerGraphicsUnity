@@ -720,7 +720,7 @@ MonoBehaviour:
   lifeaddPrefab: {fileID: 4370527587643013425, guid: 96509295cc12a0441b2331a4f35738bc, type: 3}
   balladdPrefab: {fileID: 707429325461252224, guid: 4f8c12634964de0488c199e50be87b18, type: 3}
   scoreminusPrefab: {fileID: 860610510829878337, guid: fd5a87b526f882f48b6f6ad6f48d123e, type: 3}
-  span: 5
+  span: 2
 --- !u!4 &401595701
 Transform:
   m_ObjectHideFlags: 0
