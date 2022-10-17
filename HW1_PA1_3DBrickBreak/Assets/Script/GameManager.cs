@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private int bonusballCnt = 0;
     private int ballCnt = 3;
+    private int blockCnt = 0;
     private bool is_gameOver = false;
     public GameObject gameOverPopup;
     public GameObject gameClearPopup;
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
-        else if (score >= 50)
+        else if (blockCnt == 0/*score >= 50*/)
         {
             GameClear();
         }
@@ -82,11 +83,15 @@ public class GameManager : MonoBehaviour
         {
             ballCnt += ChangeInLives;
             livesText.text = "³²Àº È½¼ö " + ballCnt;
-            GameObject ball = GameObject.Find("BallGenerator");
-            ball.GetComponent<BallGenerator>().ballDestroy();
+            if(ChangeInLives < 0)
+            {
+                GameObject ball = GameObject.Find("BallGenerator");
+                ball.GetComponent<BallGenerator>().ballDestroy();
+            }
         }
         else
             bonusballCnt--;
+        Debug.Log(bonusballCnt);
     }
 
     public void BonusBall()
@@ -97,6 +102,12 @@ public class GameManager : MonoBehaviour
             ball.GetComponent<BallGenerator>().makeBall();
             bonusballCnt++;
         }
+        Debug.Log(bonusballCnt);
+    }
+
+    public void UpdateBlockCnt(int ChangeInBlock)
+    {
+        blockCnt += ChangeInBlock;
     }
 
     public void GameClear()

@@ -71,7 +71,8 @@ public class BallController : MonoBehaviour
 
             Destroy(collision.gameObject);
             GameObject manager = GameObject.Find("GameManager");
-            manager.GetComponent<GameManager>().IncScore(10);
+            manager.GetComponent<GameManager>().IncScore(5);
+            manager.GetComponent<GameManager>().UpdateBlockCnt(-1);
         }
         else if (collision.gameObject.CompareTag("Player"))
         {

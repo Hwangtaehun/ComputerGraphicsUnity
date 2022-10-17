@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - BallController
     - BallGenerator
+    - BlockController
     - BlockGenerator
     - DownMove
     - GameDirector
@@ -141,6 +142,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3154}
     - Class: 114
       Script: {instanceID: 3944}
+    - Class: 114
+      Script: {instanceID: 18300}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -262,7 +265,7 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
-      Hash: 79a9c3f3e64993622b30211845bfd793
+      Hash: 23532b579676e78085641690ca35a368
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ItemGenerator
@@ -412,7 +415,7 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 8f224b413dd8ea4e77e77b191dceb450
+      Hash: 4b60be19bc5ed6352b614001c07ec432
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BlockGenerator
@@ -638,6 +641,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BlockController
   platform: 5
   scenePathNames:
   - Assets/Scenes/OpeningSence.unity
