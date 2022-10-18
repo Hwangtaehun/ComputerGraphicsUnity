@@ -6,15 +6,17 @@ public class BlockGenerator : MonoBehaviour
 {
     public GameObject blockPrefab;
     public GameObject doubleblockPrefab;
+    public GameObject wallblockPrefab;
     private int blockCnt = 0;
     private float timeCount = 0.0f;
+    private float timeWall = 0.0f;
 
     void Start()
     {
         for (int i = 0; i < 5; i++)
         {
-            int px = Random.Range(13, 21);
-            int pz = Random.Range(93, 95);
+            float px = Random.Range(13.0f, 21.0f);
+            float pz = Random.Range(93.0f, 95.0f);
 
             if (i<3)
             {
@@ -42,6 +44,18 @@ public class BlockGenerator : MonoBehaviour
         Vector3 randomPos = new Vector3(px, -4.3f, pz);
         int doubleblock = 8;
         GameObject manager = GameObject.Find("GameManager");
+        
+        if(timeWall > 10.0f)
+        {
+            for(int i = 0; i < 2; i++)
+            {
+                float ppx = Random.Range(13.0f, 21.0f);
+                GameObject block = Instantiate(wallblockPrefab);
+                block.transform.position = new Vector3(ppx, -4.3f, 92.0f);
+                Destroy(block, 5.0f);
+            }
+            timeWall = 0.0f;
+        }
 
         if (blockCnt < 15)
         {
@@ -49,11 +63,11 @@ public class BlockGenerator : MonoBehaviour
             {
                 if(dice >= doubleblock)
                 {
-                    GameObject block = Instantiate(doubleblockPrefab, randomPos, transform.rotation);
+                    Instantiate(doubleblockPrefab, randomPos, transform.rotation);
                 }
                 else
                 {
-                    GameObject block = Instantiate(blockPrefab, randomPos, transform.rotation);
+                    Instantiate(blockPrefab, randomPos, transform.rotation);
                 }
                 blockCnt++;
                 manager.GetComponent<GameManager>().UpdateBlockCnt(1);
@@ -61,5 +75,6 @@ public class BlockGenerator : MonoBehaviour
             }
         }
         timeCount += Time.deltaTime;
+        timeWall += Time.deltaTime;
     }
 }

@@ -20,6 +20,8 @@ public class BallGenerator : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) == true && isBallInPlay == false)
         {
             Time.timeScale = 1.0f;
+            GameObject manager = GameObject.Find("GameManager");
+            manager.GetComponent<GameManager>().Gameplay();
             isBallInPlay = true;
             GameObject ball = Instantiate(ballPrefab, transform.position, transform.rotation);
             Vector3 dir = new Vector3(speed, 0, speed);

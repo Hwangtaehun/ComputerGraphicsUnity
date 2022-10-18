@@ -987,6 +987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockPrefab: {fileID: 6068324228984645661, guid: 82ec7011b42ad8a438e6a7215b403200, type: 3}
   doubleblockPrefab: {fileID: 85239583729188881, guid: 34c440b716b949d458470df3d0ec0fad, type: 3}
+  wallblockPrefab: {fileID: 4640922213183027570, guid: 2b0eb4b6940cc7248a85316a5e791004, type: 3}
 --- !u!4 &495179210
 Transform:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private int ballCnt = 3;
     private int blockCnt = 0;
     private bool is_gameOver = false;
+    private bool isBallInPlay = false;
     public GameObject gameOverPopup;
     public GameObject gameClearPopup;
     public GameObject gameExplainPopup;
@@ -83,26 +84,29 @@ public class GameManager : MonoBehaviour
         {
             ballCnt += ChangeInLives;
             livesText.text = "³²Àº È½¼ö " + ballCnt;
-            if(ChangeInLives < 0)
+            if (ChangeInLives < 0)
             {
                 GameObject ball = GameObject.Find("BallGenerator");
                 ball.GetComponent<BallGenerator>().ballDestroy();
+                isBallInPlay = false;
             }
         }
         else
             bonusballCnt--;
-        Debug.Log(bonusballCnt);
     }
 
     public void BonusBall()
     {
-        if (bonusballCnt < 2)
+        if (isBallInPlay == true)
         {
-            GameObject ball = GameObject.Find("BallGenerator");
-            ball.GetComponent<BallGenerator>().makeBall();
-            bonusballCnt++;
+            if (bonusballCnt < 2)
+            {
+                GameObject ball = GameObject.Find("BallGenerator");
+                ball.GetComponent<BallGenerator>().makeBall();
+                bonusballCnt++;
+            }
         }
-        Debug.Log(bonusballCnt);
+        //Debug.Log(bonusballCnt);
     }
 
     public void UpdateBlockCnt(int ChangeInBlock)
@@ -118,6 +122,11 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0.0f;
             is_gameOver = true;
         }
+    }
+
+    public void Gameplay()
+    {
+        isBallInPlay = true;
     }
 
     public void GameOver()
