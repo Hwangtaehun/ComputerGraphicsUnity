@@ -35,11 +35,11 @@ public class GameManager : MonoBehaviour
     {
         IncTimer();
 
-        if (ballCnt == 0 && score < 50)
+        if (ballCnt == 0)
         {
             GameOver();
         }
-        else if (blockCnt == 0/*score >= 50*/)
+        else if (blockCnt == 0)
         {
             GameClear();
         }

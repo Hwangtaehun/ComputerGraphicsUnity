@@ -35,7 +35,7 @@ public class ItemGenerator : MonoBehaviour
                 item = Instantiate(scoreminusPrefab);
                 item.transform.position = new Vector3(x, -4.341f, 98.38f);
             }
-            //item = Instantiate(lifeaddPrefab);
+            //item = Instantiate(balladdPrefab);
             //item.transform.position = new Vector3(x, -4.341f, 98.38f);
         }
     }
