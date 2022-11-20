@@ -39,24 +39,38 @@ public class Player : MonoBehaviour
 
         if (GameObject.FindGameObjectsWithTag("Dot").Length == 0)
         {
-            SceneManager.LoadScene("Main");
-            //SceneManager.LoadScene("Success");
+            //SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Success");
         }
 
         if (Input.GetButton("Jump")) 
             direction.y = JumpPow;
     }
 
+    //private void OnCollisionEnter(Collision other)
+    //{
+    //    if(other.gameObject.CompareTag("DeadZone"))
+    //    {
+    //        SceneManager.LoadScene("Failure");
+    //    }
+    //}
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Dot" )
         {
+            GameObject manager = GameObject.Find("ScoreManager");
+            manager.GetComponent<ScoreManager>().IncScore(5);
             Destroy(other.gameObject);
         }
         if (other.tag == "Enemy")
         {
-            SceneManager.LoadScene("Main");
-            //SceneManager.LoadScene("Failure");
+            //SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Failure");
+        }
+        else if(other.tag =="DeadZone")
+        {
+            SceneManager.LoadScene("Failure");
         }
     }
 }
