@@ -46,8 +46,7 @@ public class Player : MonoBehaviour
         {
             characterController.stepOffset = 0;
         }
-
-        if(attack == true)
+        if (attack == true)
         {
             if (Input.GetButtonDown("Fire1"))
             {
