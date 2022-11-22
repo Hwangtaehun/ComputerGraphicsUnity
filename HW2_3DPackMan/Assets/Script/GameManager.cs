@@ -6,13 +6,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //private Text scoreText;
-    //private int score = 0;
     public static bool GameIsPaused = false;
 
     void Start()
     {
-        //this.scoreText = GameObject.Find("Score").GetComponent<Text>();
         Time.timeScale = 1.0f;
         GameIsPaused = true;
     }

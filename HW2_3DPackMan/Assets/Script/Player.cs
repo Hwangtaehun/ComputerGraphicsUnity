@@ -11,9 +11,8 @@ public class Player : MonoBehaviour
 
     float ySpeed;
     float originalStepOffset;
-    bool jumping;
-    //bool sliding;
-    bool attacktime;
+    bool slideing = false;
+    bool attack = false;
     CharacterController characterController;
     Animator animator;
 
@@ -31,24 +30,31 @@ public class Player : MonoBehaviour
 
         //มกวม
         ySpeed += Physics.gravity.y * Time.deltaTime;
-
         if(characterController.isGrounded)
         {
             characterController.stepOffset = originalStepOffset;
             ySpeed = - 0.5f;
             animator.SetBool("Jumping", false);
-            jumping = false;
 
             if (Input.GetButtonDown("Jump"))
             {
                 ySpeed = jumpSpeed;
                 animator.SetBool("Jumping", true);
-                jumping = true;
             }
         }
         else
         {
             characterController.stepOffset = 0;
+        }
+
+        if(attack == true)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                animator.SetBool("Sliding", true);
+                slideing = true;
+                Invoke("slideractionstop", 1.5f);
+            }
         }
 
         if (direction.sqrMagnitude > 0.01f)
@@ -71,10 +77,11 @@ public class Player : MonoBehaviour
 
         if (GameObject.FindGameObjectsWithTag("Dot").Length == 0)
         {
-            //SceneManager.LoadScene("Main");
-            //SceneManager.LoadScene("Success");
+            GameObject enemy = GameObject.Find("Enemy");
+            enemy.GetComponent<Enemy>().RunTure();
             animator.SetBool("AttackTime", true);
-            attacktime = true;
+            Invoke("attackactionstop", 3.0f);
+            attack = true;
         }
 
         if(transform.position.y < 0)
@@ -91,14 +98,37 @@ public class Player : MonoBehaviour
             manager.GetComponent<ScoreManager>().IncScore(5);
             Destroy(other.gameObject);
         }
-        if (other.tag == "Enemy")
-        {
-            //SceneManager.LoadScene("Main");
-            SceneManager.LoadScene("Failure");
-        }
         else if(other.tag =="DeadZone")
         {
             SceneManager.LoadScene("Failure");
         }
+        if(attack == false)
+        {
+            if (other.tag == "Enemy")
+            {
+                SceneManager.LoadScene("Failure");
+            }
+        }
+        else if(attack == true)
+        {
+            if (slideing == true)
+            {
+                if (other.tag == "Enemy")
+                {
+                    SceneManager.LoadScene("Success");
+                }
+            }
+        }
+    }
+
+    public void attackactionstop()
+    {
+        animator.SetBool("AttackTime", false);
+    }
+
+    public void slideractionstop()
+    {
+        animator.SetBool("Sliding", false);
+        slideing = false;
     }
 }
