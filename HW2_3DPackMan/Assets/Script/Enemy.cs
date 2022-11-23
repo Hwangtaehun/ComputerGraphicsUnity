@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     Animator animator;
     bool runaway = false;
     bool stop = false;
+    float enemyTime = 0.0f;
 
     void Start()
     {
@@ -19,15 +20,19 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        enemyTime += Time.deltaTime;
         if (stop == true)
         {
-            agent.destination = transform.position;
-            if (runaway == true)
-                Invoke("RunAway", 5.0f);
-            else
-                Invoke("Chase", 5.0f);
+            agent.speed = 0f;
+            animator.SetFloat("Speed", agent.velocity.magnitude);
+            if(enemyTime > 5.0f)
+            {
+                Debug.Log(enemyTime);
+                enemyTime = 0.0f;
+                Go();
+            }
         }
-        else
+        else if(stop == false)
         {
             if (runaway == false)
             {
@@ -44,8 +49,6 @@ public class Enemy : MonoBehaviour
     {
         agent.destination = target.transform.position; // 쫓아갈 위치 설정
         animator.SetFloat("Speed", agent.velocity.magnitude);
-        if (stop == true)
-            stop = false;
     }
 
     private void RunAway()
@@ -54,8 +57,7 @@ public class Enemy : MonoBehaviour
         Vector3 dirToTarget = transform.position - target.transform.position;
         Vector3 newPos = transform.position + dirToTarget;
         agent.SetDestination(newPos);
-        if (stop == true)
-            stop = false;
+        animator.SetFloat("Speed", agent.velocity.magnitude);
     }
 
     public void RunTure()
@@ -66,5 +68,11 @@ public class Enemy : MonoBehaviour
     public void Stop()
     {
         stop = true;
+    }
+
+    private void Go()
+    {
+        stop = false;
+        agent.speed = 3.5f;
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - PlayerStop
   - EnemyStop
   - PlayerSpeed
+  - Maze
   layers:
   - Default
   - TransparentFX

@@ -82,7 +82,6 @@ public class Player : MonoBehaviour
         {
             GameObject enemy = GameObject.Find("Enemy");
             enemy.GetComponent<Enemy>().RunTure();
-            stop();
             animator.SetBool("AttackTime", true);
             Invoke("attackactionstop", 3.0f);
             attack = true;
@@ -129,14 +128,14 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if(attack == false)
+        if (attack == false)
         {
             if (other.tag == "Enemy")
             {
                 SceneManager.LoadScene("Failure");
             }
         }
-        else if(attack == true)
+        else if (attack == true)
         {
             if (slideing == true)
             {
@@ -161,7 +160,7 @@ public class Player : MonoBehaviour
 
     private void speedChange()
     {
-        moveSpeed *= 2.0f;
+        moveSpeed = 2.5f;
         Invoke("speedOrigin", 5.0f);
     }
 
@@ -173,6 +172,6 @@ public class Player : MonoBehaviour
     private void stop()
     {
         moveSpeed = 0.0f;
-        Invoke("speedOrigin", 5.0f);
+        Invoke("speedOrigin", 2.5f);
     }
 }
