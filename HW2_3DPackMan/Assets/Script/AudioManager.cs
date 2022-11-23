@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,7 +27,7 @@ public class AudioManager : MonoBehaviour
     {
         firstPlayInt = PlayerPrefs.GetInt(FirstPlay);
 
-        if (firstPlayInt == 0)
+        if(firstPlayInt == 0)
         {
             backgroundFloat = 0.5f;
             soundEffectsFloat = 0.75f;
@@ -50,16 +48,16 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            backgroundFloat = PlayerPrefs.GetFloat(BackgroundPref);
-            backgroundSlider.value = backgroundFloat;
-            soundEffectsFloat = PlayerPrefs.GetFloat(SoundEffectPref);
-            soundEffectsSlider.value = soundEffectsFloat;
+          backgroundFloat = PlayerPrefs.GetFloat(BackgroundPref);
+          backgroundSlider.value = backgroundFloat;
+          soundEffectsFloat = PlayerPrefs.GetFloat(SoundEffectPref);
+          soundEffectsSlider.value = soundEffectsFloat;
 
             //Ãß°¡
-            backgroundInt = PlayerPrefs.GetFloat(BackgroundMutePref);
-            backgroundToggle.isOn = Convert.ToBoolean(backgroundInt);
-            soundEffectsInt = PlayerPrefs.GetFloat(SoundEffectMutePref);
-            soundEffectsToggle.isOn = Convert.ToBoolean(soundEffectsInt);
+          backgroundInt = PlayerPrefs.GetFloat(BackgroundMutePref);
+          backgroundToggle.isOn = Convert.ToBoolean(backgroundInt);
+          soundEffectsInt = PlayerPrefs.GetFloat(SoundEffectMutePref);
+          soundEffectsToggle.isOn = Convert.ToBoolean(soundEffectsInt);
         }
     }
 
@@ -84,13 +82,13 @@ public class AudioManager : MonoBehaviour
     public void UpdateSound()
     {
 
-        for (int i = 0; i < backgroundAudio.Length; i++)
+        for (int i = 0; i<backgroundAudio.Length; i++)
         {
             backgroundAudio[i].volume = backgroundSlider.value;
             backgroundAudio[i].mute = backgroundToggle.isOn;
         }
 
-        for (int j = 0; j < soundEffectAudio.Length; j++)
+        for(int j = 0; j<soundEffectAudio.Length; j++)
         {
             soundEffectAudio[j].volume = soundEffectsSlider.value;
             soundEffectAudio[j].mute = soundEffectsToggle.isOn;

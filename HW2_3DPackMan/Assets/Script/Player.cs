@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        GameObject sound = GameObject.Find("Sound");
+        
         // 좌우 방향키와 상하 방향키를 눌렀는지 판별
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 ySpeed = jumpSpeed;
+                sound.GetComponentInChildren<SoundEffect>().PlaySound("Jump");
                 animator.SetBool("Jumping", true);
             }
         }
@@ -50,6 +53,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
+                sound.GetComponentInChildren<SoundEffect>().PlaySound("Slide");
                 animator.SetBool("Sliding", true);
                 slideing = true;
                 Invoke("slideractionstop", 1.5f);
@@ -78,6 +82,7 @@ public class Player : MonoBehaviour
         {
             GameObject enemy = GameObject.Find("Enemy");
             enemy.GetComponent<Enemy>().RunTure();
+            stop();
             animator.SetBool("AttackTime", true);
             Invoke("attackactionstop", 3.0f);
             attack = true;
@@ -93,14 +98,37 @@ public class Player : MonoBehaviour
     {
         if(other.tag == "Dot" )
         {
-            GameObject manager = GameObject.Find("ScoreManager");
-            manager.GetComponent<ScoreManager>().IncScore(5);
+            GameObject manager = GameObject.Find("NumberManager");
+            manager.GetComponent<NumberManager>().IncScore(5);
             Destroy(other.gameObject);
         }
         else if(other.tag =="DeadZone")
         {
             SceneManager.LoadScene("Failure");
         }
+        else if(other.tag == "ScoreAdd")
+        {
+            GameObject manager = GameObject.Find("NumberManager");
+            manager.GetComponent<NumberManager>().IncScore(10);
+            Destroy(other.gameObject);
+        }
+        else if(other.tag == "PlayerStop")
+        {
+            stop();
+            Destroy(other.gameObject);
+        }
+        else if(other.tag == "PlayerSpeed")
+        {
+            speedChange();
+            Destroy(other.gameObject);
+        }
+        else if(other.tag == "EnemyStop")
+        {
+            GameObject enemy = GameObject.Find("Enemy");
+            enemy.GetComponent<Enemy>().Stop();
+            Destroy(other.gameObject);
+        }
+
         if(attack == false)
         {
             if (other.tag == "Enemy")
@@ -129,5 +157,22 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("Sliding", false);
         slideing = false;
+    }
+
+    private void speedChange()
+    {
+        moveSpeed *= 2.0f;
+        Invoke("speedOrigin", 5.0f);
+    }
+
+    private void speedOrigin()
+    {
+        moveSpeed = 5.0f;
+    }
+
+    private void stop()
+    {
+        moveSpeed = 0.0f;
+        Invoke("speedOrigin", 5.0f);
     }
 }

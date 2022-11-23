@@ -7,6 +7,10 @@ TagManager:
   - DeadZone
   - Dot
   - Enemy
+  - ScoreAdd
+  - PlayerStop
+  - EnemyStop
+  - PlayerSpeed
   layers:
   - Default
   - TransparentFX

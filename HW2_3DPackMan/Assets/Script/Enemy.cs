@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     NavMeshAgent agent;
     Animator animator;
     bool runaway = false;
+    bool stop = false;
 
     void Start()
     {
@@ -18,22 +19,52 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if(runaway == false)
+        if (stop == true)
         {
-            agent.destination = target.transform.position; // 쫓아갈 위치 설정
-            animator.SetFloat("Speed", agent.velocity.magnitude);
+            agent.destination = transform.position;
+            if (runaway == true)
+                Invoke("RunAway", 5.0f);
+            else
+                Invoke("Chase", 5.0f);
         }
         else
         {
-            float distance = Vector3.Distance(transform.position, target.transform.position);
-            Vector3 dirToTarget = transform.position - target.transform.position;
-            Vector3 newPos = transform.position + dirToTarget;
-            agent.SetDestination(newPos);
+            if (runaway == false)
+            {
+                Chase();
+            }
+            else
+            {
+                RunAway();
+            }
         }
+    }
+
+    private void Chase()
+    {
+        agent.destination = target.transform.position; // 쫓아갈 위치 설정
+        animator.SetFloat("Speed", agent.velocity.magnitude);
+        if (stop == true)
+            stop = false;
+    }
+
+    private void RunAway()
+    {
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+        Vector3 dirToTarget = transform.position - target.transform.position;
+        Vector3 newPos = transform.position + dirToTarget;
+        agent.SetDestination(newPos);
+        if (stop == true)
+            stop = false;
     }
 
     public void RunTure()
     {
         runaway = true;
+    }
+
+    public void Stop()
+    {
+        stop = true;
     }
 }
