@@ -7,22 +7,25 @@ public class Enemy : MonoBehaviour
 {
     public GameObject target;
     NavMeshAgent agent;
-    Animator animator;
+    Animator animator; 
+    Collider EnemyCd;
     bool runaway = false;
     bool stop = false;
-    float enemyTime = 0.0f;
+    bool destory = false;
     float enemySpeed = 3.5f;
+    //float enemyTime = 0.0f;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
+        EnemyCd = GetComponent<Collider>();
         agent.speed = enemySpeed;
     }
 
     void Update()
     {
-        enemyTime += Time.deltaTime;
+        //enemyTime += Time.deltaTime;
         if (stop == true)
         {
             enemySpeed = 0.0f;
@@ -47,6 +50,13 @@ public class Enemy : MonoBehaviour
                 RunAway();
             }
         }
+
+        if(destory == true)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+            EnemyCd.enabled = false;
+        }
+
     }
 
     private void Chase()
@@ -72,6 +82,11 @@ public class Enemy : MonoBehaviour
     public void Stop()
     {
         stop = true;
+    }
+
+    public void Destory()
+    {
+        destory = true;
     }
 
     private void Go()

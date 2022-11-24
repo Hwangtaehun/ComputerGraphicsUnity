@@ -10,6 +10,7 @@ public class NumberManager : MonoBehaviour
     private Text livesText;
     private int score = 0;
     private int lives = 3;
+    private int enemyCnt = 2;
 
     void Start()
     {
@@ -20,7 +21,7 @@ public class NumberManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        if (enemyCnt == 0)
         {
             SceneManager.LoadScene("Success");
         }
@@ -43,5 +44,10 @@ public class NumberManager : MonoBehaviour
     {
         lives += ChangeInLives;
         livesText.text = "³²Àº È½¼ö " + lives;
+    }
+
+    public void UpdateEnemycnt()
+    {
+        enemyCnt--;
     }
 }

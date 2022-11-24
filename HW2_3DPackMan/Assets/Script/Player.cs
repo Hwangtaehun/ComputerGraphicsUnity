@@ -163,9 +163,19 @@ public class Player : MonoBehaviour
         {
             if (slideing == true)
             {
-                if (other.tag == "Enemy")
+                if (other.name == "Enemy")
                 {
-                    Destroy(other.gameObject);
+                    GameObject enemy = GameObject.Find("Enemy");
+                    enemy.GetComponent<Enemy>().Destory();
+                    GameObject manager = GameObject.Find("NumberManager");
+                    manager.GetComponent<NumberManager>().UpdateEnemycnt();
+                }
+                else if(other.name == "Enemy2")
+                {
+                    GameObject enemy2 = GameObject.Find("Enemy2");
+                    enemy2.GetComponent<Enemy>().Destory();
+                    GameObject manager = GameObject.Find("NumberManager");
+                    manager.GetComponent<NumberManager>().UpdateEnemycnt();
                 }
             }
         }
