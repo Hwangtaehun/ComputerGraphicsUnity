@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NumberManager : MonoBehaviour
 {
@@ -11,6 +12,14 @@ public class NumberManager : MonoBehaviour
     void Start()
     {
         this.scoreText = GameObject.Find("Score").GetComponent<Text>();
+    }
+
+    private void Update()
+    {
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        {
+            SceneManager.LoadScene("Success");
+        }
     }
 
     public void IncScore(int ChangeScore)

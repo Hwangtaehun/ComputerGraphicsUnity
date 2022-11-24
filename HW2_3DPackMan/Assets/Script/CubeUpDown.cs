@@ -33,4 +33,9 @@ public class CubeUpDown : MonoBehaviour
         }
         transform.position = new Vector3(transform.position.x, currentPosition, transform.position.z);
     }
+
+    void moveStop()
+    {
+        moveSpeed = 0.0f;
+    }
 }

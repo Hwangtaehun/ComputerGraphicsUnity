@@ -11,11 +11,13 @@ public class Enemy : MonoBehaviour
     bool runaway = false;
     bool stop = false;
     float enemyTime = 0.0f;
+    float enemySpeed = 3.5f;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
+        agent.speed = enemySpeed;
     }
 
     void Update()
@@ -23,14 +25,16 @@ public class Enemy : MonoBehaviour
         enemyTime += Time.deltaTime;
         if (stop == true)
         {
-            agent.speed = 0f;
+            enemySpeed = 0.0f;
+            agent.speed = enemySpeed;
             animator.SetFloat("Speed", agent.velocity.magnitude);
-            if(enemyTime > 5.0f)
-            {
-                Debug.Log(enemyTime);
-                enemyTime = 0.0f;
-                Go();
-            }
+            Invoke("Go", 5.0f);
+            //if(enemyTime > 5.0f)
+            //{
+            //    Debug.Log(enemyTime);
+            //    enemyTime = 0.0f;
+            //    Go();
+            //}
         }
         else if(stop == false)
         {
@@ -73,6 +77,7 @@ public class Enemy : MonoBehaviour
     private void Go()
     {
         stop = false;
-        agent.speed = 3.5f;
+        enemySpeed = 3.5f;
+        agent.speed = enemySpeed;
     }
 }

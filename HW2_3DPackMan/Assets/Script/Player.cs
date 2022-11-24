@@ -9,12 +9,14 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 360f; // 회전 속도 지정
     public float jumpSpeed;
 
-    float ySpeed;
-    float originalStepOffset;
-    bool slideing = false;
-    bool attack = false;
     CharacterController characterController;
     Animator animator;
+    float ySpeed;
+    float originalStepOffset;
+    bool working = true;
+    bool slideing = false;
+    bool attack = false;
+    bool input = true;
 
     void Start()
     {
@@ -27,70 +29,80 @@ public class Player : MonoBehaviour
     {
         GameObject sound = GameObject.Find("Sound");
         
-        // 좌우 방향키와 상하 방향키를 눌렀는지 판별
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-        //점프
-        ySpeed += Physics.gravity.y * Time.deltaTime;
-        if(characterController.isGrounded)
+        if (input == true)
         {
-            characterController.stepOffset = originalStepOffset;
-            ySpeed = - 0.5f;
-            animator.SetBool("Jumping", false);
+            // 좌우 방향키와 상하 방향키를 눌렀는지 판별
+            Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-            if (Input.GetButtonDown("Jump"))
+            //점프
+            ySpeed += Physics.gravity.y * Time.deltaTime;
+            if (characterController.isGrounded)
             {
-                ySpeed = jumpSpeed;
-                sound.GetComponentInChildren<SoundEffect>().PlaySound("Jump");
-                animator.SetBool("Jumping", true);
+                characterController.stepOffset = originalStepOffset;
+                ySpeed = -0.5f;
+                animator.SetBool("Jumping", false);
+
+                if (Input.GetButtonDown("Jump"))
+                {
+                    ySpeed = jumpSpeed;
+                    sound.GetComponentInChildren<SoundEffect>().PlaySound("Jump");
+                    animator.SetBool("Jumping", true);
+                }
+            }
+            else
+            {
+                characterController.stepOffset = 0;
+            }
+            if (attack == true)
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    sound.GetComponentInChildren<SoundEffect>().PlaySound("Slide");
+                    animator.SetBool("Sliding", true);
+                    slideing = true;
+                    Invoke("slideractionstop", 1.5f);
+                }
+            }
+
+            if (direction.sqrMagnitude > 0.01f)
+            {
+                Vector3 forward = Vector3.Slerp( // 메소드를 조합해 플레이어의 방향 변환
+                transform.forward,
+                direction,
+                rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction)
+                );
+                transform.LookAt(transform.position + forward);
+            }
+            // Move()를 이용해 이동, 충돌 처리, 속도 값 얻기 가능
+            Vector3 velocity = direction * moveSpeed * Time.deltaTime;
+            velocity.y = ySpeed * Time.deltaTime;
+
+            characterController.Move(velocity);
+
+            // Speed 파라미터를 통해 현재 속도의 크기(Character Controller)를 전달
+            animator.SetFloat("Speed", characterController.velocity.magnitude);
+
+            if (transform.position.y < 0)
+            {
+                SceneManager.LoadScene("Failure");
             }
         }
-        else
+
+        if (working == true)
         {
-            characterController.stepOffset = 0;
-        }
-        if (attack == true)
-        {
-            if (Input.GetButtonDown("Fire1"))
+            if (GameObject.FindGameObjectsWithTag("Dot").Length == 0)
             {
-                sound.GetComponentInChildren<SoundEffect>().PlaySound("Slide");
-                animator.SetBool("Sliding", true);
-                slideing = true;
-                Invoke("slideractionstop", 1.5f);
+                input = false;
+                GameObject enemy = GameObject.Find("Enemy");
+                enemy.GetComponent<Enemy>().RunTure();
+                GameObject enemy2 = GameObject.Find("Enemy2");
+                enemy2.GetComponent<Enemy>().RunTure();
+                animator.SetBool("AttackTime", true);
+                Invoke("attackactionstop", 2.0f);
+                attack = true;
+                working = false;
             }
         }
-
-        if (direction.sqrMagnitude > 0.01f)
-        {
-            Vector3 forward = Vector3.Slerp( // 메소드를 조합해 플레이어의 방향 변환
-            transform.forward,
-            direction,
-            rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, direction)
-            );
-            transform.LookAt(transform.position + forward);
-        }
-        // Move()를 이용해 이동, 충돌 처리, 속도 값 얻기 가능
-        Vector3 velocity = direction * moveSpeed * Time.deltaTime;
-        velocity.y = ySpeed * Time.deltaTime;
-
-        characterController.Move(velocity);
-
-        // Speed 파라미터를 통해 현재 속도의 크기(Character Controller)를 전달
-        animator.SetFloat("Speed", characterController.velocity.magnitude);
-
-        if (GameObject.FindGameObjectsWithTag("Dot").Length == 0)
-        {
-            GameObject enemy = GameObject.Find("Enemy");
-            enemy.GetComponent<Enemy>().RunTure();
-            animator.SetBool("AttackTime", true);
-            Invoke("attackactionstop", 3.0f);
-            attack = true;
-        }
-
-        if(transform.position.y < 0)
-        {
-            SceneManager.LoadScene("Failure");
-        }          
     }
 
     private void OnTriggerEnter(Collider other)
@@ -113,18 +125,23 @@ public class Player : MonoBehaviour
         }
         else if(other.tag == "PlayerStop")
         {
-            stop();
+            moveSpeed = 0.0f;
+            jumpSpeed = 0.0f;
             Destroy(other.gameObject);
+            Invoke("speedOrigin", 2.5f);
         }
         else if(other.tag == "PlayerSpeed")
         {
-            speedChange();
+            moveSpeed = 2.5f;
             Destroy(other.gameObject);
+            Invoke("speedOrigin", 5.0f);
         }
         else if(other.tag == "EnemyStop")
         {
             GameObject enemy = GameObject.Find("Enemy");
             enemy.GetComponent<Enemy>().Stop();
+            GameObject enemy2 = GameObject.Find("Enemy2");
+            enemy2.GetComponent<Enemy>().Stop();
             Destroy(other.gameObject);
         }
 
@@ -141,7 +158,7 @@ public class Player : MonoBehaviour
             {
                 if (other.tag == "Enemy")
                 {
-                    SceneManager.LoadScene("Success");
+                    Destroy(other.gameObject);
                 }
             }
         }
@@ -150,6 +167,7 @@ public class Player : MonoBehaviour
     public void attackactionstop()
     {
         animator.SetBool("AttackTime", false);
+        input = true;
     }
 
     public void slideractionstop()
@@ -158,20 +176,9 @@ public class Player : MonoBehaviour
         slideing = false;
     }
 
-    private void speedChange()
-    {
-        moveSpeed = 2.5f;
-        Invoke("speedOrigin", 5.0f);
-    }
-
     private void speedOrigin()
     {
         moveSpeed = 5.0f;
-    }
-
-    private void stop()
-    {
-        moveSpeed = 0.0f;
-        Invoke("speedOrigin", 2.5f);
+        jumpSpeed = 5.0f;
     }
 }
