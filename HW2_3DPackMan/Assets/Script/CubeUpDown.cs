@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CubeUpDown : MonoBehaviour
 {
+    private float originSpeed;
     private float currentPosition;
     public float minY = -2.0f;
     public float maxY = 2.0f;
@@ -15,6 +16,7 @@ public class CubeUpDown : MonoBehaviour
     void Start()
     {
         currentPosition = transform.position.y;
+        originSpeed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -34,8 +36,14 @@ public class CubeUpDown : MonoBehaviour
         transform.position = new Vector3(transform.position.x, currentPosition, transform.position.z);
     }
 
-    void moveStop()
+    public void moveStop()
     {
         moveSpeed = 0.0f;
+        Invoke("moveOrigion", 2.0f);
+    }
+
+    private void moveOrigion()
+    {
+        moveSpeed = originSpeed;
     }
 }

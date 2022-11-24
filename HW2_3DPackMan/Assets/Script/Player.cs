@@ -97,6 +97,12 @@ public class Player : MonoBehaviour
                 enemy.GetComponent<Enemy>().RunTure();
                 GameObject enemy2 = GameObject.Find("Enemy2");
                 enemy2.GetComponent<Enemy>().RunTure();
+                GameObject cube1 = GameObject.Find("LeftMoveBlack");
+                cube1.GetComponent<CubeMoveZ>().moveStop();
+                GameObject cube2 = GameObject.Find("RightMoveBlack");
+                cube2.GetComponent<CubeMoveZ>().moveStop();
+                GameObject cube3 = GameObject.Find("UpDownCube");
+                cube3.GetComponent<CubeUpDown>().moveStop();
                 animator.SetBool("AttackTime", true);
                 Invoke("attackactionstop", 2.0f);
                 attack = true;
@@ -164,13 +170,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void attackactionstop()
+    private void attackactionstop()
     {
         animator.SetBool("AttackTime", false);
         input = true;
     }
 
-    public void slideractionstop()
+    private void slideractionstop()
     {
         animator.SetBool("Sliding", false);
         slideing = false;
