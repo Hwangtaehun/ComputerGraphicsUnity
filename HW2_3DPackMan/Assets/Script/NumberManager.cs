@@ -7,11 +7,15 @@ using UnityEngine.SceneManagement;
 public class NumberManager : MonoBehaviour
 {
     private Text scoreText;
+    private Text livesText;
     private int score = 0;
+    private int lives = 3;
 
     void Start()
     {
         this.scoreText = GameObject.Find("Score").GetComponent<Text>();
+        this.livesText = GameObject.Find("Lives").GetComponent<Text>();
+        livesText.text = "³²Àº È½¼ö " + lives;
     }
 
     private void Update()
@@ -19,6 +23,11 @@ public class NumberManager : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
             SceneManager.LoadScene("Success");
+        }
+
+        if(lives == 0)
+        {
+            SceneManager.LoadScene("Failure");
         }
     }
 
@@ -28,5 +37,11 @@ public class NumberManager : MonoBehaviour
         if (score < 0)
             score = 0;
         this.scoreText.text = "Á¡¼ö " + score.ToString();
+    }
+
+    public void UpdateLife(int ChangeInLives)
+    {
+        lives += ChangeInLives;
+        livesText.text = "³²Àº È½¼ö " + lives;
     }
 }

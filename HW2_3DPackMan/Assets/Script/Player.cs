@@ -155,7 +155,8 @@ public class Player : MonoBehaviour
         {
             if (other.tag == "Enemy")
             {
-                SceneManager.LoadScene("Failure");
+                GameObject manager = GameObject.Find("NumberManager");
+                manager.GetComponent<NumberManager>().UpdateLife(-1);
             }
         }
         else if (attack == true)
