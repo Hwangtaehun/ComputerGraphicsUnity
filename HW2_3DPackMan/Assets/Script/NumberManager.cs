@@ -11,19 +11,32 @@ public class NumberManager : MonoBehaviour
     private int score = 0;
     private int lives = 3;
     private int enemyCnt = 2;
+    private int saveScore;
 
     void Start()
     {
         this.scoreText = GameObject.Find("Score").GetComponent<Text>();
         this.livesText = GameObject.Find("Lives").GetComponent<Text>();
         livesText.text = "³²Àº È½¼ö " + lives;
+        if(!PlayerPrefs.HasKey("BestScore"))
+        {
+            PlayerPrefs.SetInt("BestScore", 0);
+        }
+        saveScore = PlayerPrefs.GetInt("BestScore");
+
     }
 
-    private void Update()
+    void Update()
     {
         if (enemyCnt == 0)
         {
+            PlayerPrefs.SetInt("ScoreData", score);
             SceneManager.LoadScene("Success");
+
+            if(saveScore < score)
+            {
+                PlayerPrefs.SetInt("BestScore", score);
+            }
         }
 
         if(lives == 0)

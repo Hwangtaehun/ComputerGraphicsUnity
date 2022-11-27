@@ -93,6 +93,7 @@ public class RandomItem : MonoBehaviour
             //float x = Random.Range(-6.0f, 6.0f);
             //float z = Random.Range(4.0f, -1.45f);
             //transform.position = new Vector3(x, 0.45f, z);
+            //transform.position = new Vector3(x, 1.6f, z);
             if (dice <= 3)
             {
                 Instantiate(prefabScoreAdd, transform.position, transform.rotation);

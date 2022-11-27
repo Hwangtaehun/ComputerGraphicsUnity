@@ -57,6 +57,22 @@ public class Enemy : MonoBehaviour
             EnemyCd.enabled = false;
         }
 
+        if(transform.position.x <= -9.0 && transform.position.z >= 6.5)
+        {
+            Turn();
+        }
+        else if (transform.position.x <= -9.0 && transform.position.z <= -2.5)
+        {
+            Turn();
+        }
+        else if (transform.position.x >= 9.0 && transform.position.z >= 6.5)
+        {
+            Turn();
+        }
+        else if (transform.position.x >= 9.0 && transform.position.z <= -2.5)
+        {
+            Turn();
+        }
     }
 
     private void Chase()
@@ -94,5 +110,11 @@ public class Enemy : MonoBehaviour
         stop = false;
         enemySpeed = 3.5f;
         agent.speed = enemySpeed;
+    }
+
+    private void Turn()
+    {
+        agent.destination = new Vector3(0, 0, 0);
+        Invoke("RunAway", 2.0f);
     }
 }
