@@ -17,5 +17,21 @@ public class ItemDestroy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if (other.tag == "ScoreAdd")
+        {
+            Destroy(gameObject);
+        }
+        else if (other.tag == "PlayerStop")
+        {
+            Destroy(gameObject);
+        }
+        else if (other.tag == "PlayerSpeed")
+        {
+            Destroy(gameObject);
+        }
+        else if (other.tag == "EnemyStop")
+        {
+            Destroy(gameObject);
+        }
     }
 }
