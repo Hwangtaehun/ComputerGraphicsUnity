@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     Animator animator;
     float ySpeed;
     float originalStepOffset;
-    bool working = true;
     bool slideing = false;
     bool attack = false;
     bool input = true;
@@ -86,28 +85,6 @@ public class Player : MonoBehaviour
             if (transform.position.y < 0)
             {
                 SceneManager.LoadScene("Failure");
-            }
-        }
-
-        if (working == true)
-        {
-            if (GameObject.FindGameObjectsWithTag("Dot").Length == 0)
-            {
-                input = false;
-                GameObject enemy = GameObject.Find("Enemy");
-                enemy.GetComponent<Enemy>().RunTure();
-                GameObject enemy2 = GameObject.Find("Enemy2");
-                enemy2.GetComponent<Enemy>().RunTure();
-                GameObject cube1 = GameObject.Find("LeftMoveBlack");
-                cube1.GetComponent<CubeMoveZ>().moveStop();
-                GameObject cube2 = GameObject.Find("RightMoveBlack");
-                cube2.GetComponent<CubeMoveZ>().moveStop();
-                GameObject cube3 = GameObject.Find("UpDownCube");
-                cube3.GetComponent<CubeUpDown>().moveStop();
-                animator.SetBool("AttackTime", true);
-                Invoke("attackactionstop", 2.5f);
-                attack = true;
-                working = false;
             }
         }
     }
@@ -220,5 +197,13 @@ public class Player : MonoBehaviour
         hurt = false;
         animator.SetBool("Hurt", false);
         input = true;
+    }
+
+    public void Attack()
+    {
+        attack = true;
+        input = false;
+        animator.SetBool("AttackTime", true);
+        Invoke("attackactionstop", 2.5f);
     }
 }

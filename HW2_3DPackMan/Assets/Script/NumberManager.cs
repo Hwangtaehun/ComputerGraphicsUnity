@@ -13,6 +13,7 @@ public class NumberManager : MonoBehaviour
     private int lives = 3;
     private int enemyCnt = 2;
     private int saveScore;
+    private bool working = true;
 
     void Start()
     {
@@ -45,6 +46,26 @@ public class NumberManager : MonoBehaviour
         if(lives == 0)
         {
             SceneManager.LoadScene("Failure");
+        }
+
+        if (working == true)
+        {
+            if (GameObject.FindGameObjectsWithTag("Dot").Length == 0)
+            {
+                working = false;
+                GameObject enemy = GameObject.Find("Enemy");
+                enemy.GetComponent<Enemy>().RunTure();
+                GameObject enemy2 = GameObject.Find("Enemy2");
+                enemy2.GetComponent<Enemy>().RunTure();
+                GameObject cube1 = GameObject.Find("LeftMoveBlack");
+                cube1.GetComponent<CubeMoveZ>().moveStop();
+                GameObject cube2 = GameObject.Find("RightMoveBlack");
+                cube2.GetComponent<CubeMoveZ>().moveStop();
+                GameObject cube3 = GameObject.Find("UpDownCube");
+                cube3.GetComponent<CubeUpDown>().moveStop();
+                GameObject Player = GameObject.Find("Player");
+                Player.GetComponent<Player>().Attack();
+            }
         }
     }
 
