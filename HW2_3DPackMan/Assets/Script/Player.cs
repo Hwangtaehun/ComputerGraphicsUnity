@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     bool slideing = false;
     bool attack = false;
     bool input = true;
+    bool hurt = false;
 
     void Start()
     {
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         GameObject sound = GameObject.Find("Sound");
-        
+
         if (input == true)
         {
             // 좌우 방향키와 상하 방향키를 눌렀는지 판별
@@ -153,10 +154,25 @@ public class Player : MonoBehaviour
 
         if (attack == false)
         {
-            if (other.tag == "Enemy")
+            if(hurt == false)
             {
-                GameObject manager = GameObject.Find("NumberManager");
-                manager.GetComponent<NumberManager>().UpdateLife(-1);
+                if (other.tag == "Enemy")
+                {
+                    GameObject manager = GameObject.Find("NumberManager");
+                    manager.GetComponent<NumberManager>().UpdateLife(-1);
+                    animator.SetBool("Hurt", true);
+                    transform.position = new Vector3(0.0f, 0.0f, 0.27f);
+                    transform.eulerAngles = new Vector3(0.0f, 90.0f, 0f);
+                    GameObject sound = GameObject.Find("Sound");
+                    sound.GetComponentInChildren<SoundEffect>().PlaySound("Hurt");
+                    hurt = true;
+                    input = false;
+                    GameObject enemy = GameObject.Find("Enemy");
+                    enemy.GetComponent<Enemy>().Stop();
+                    GameObject enemy2 = GameObject.Find("Enemy2");
+                    enemy2.GetComponent<Enemy>().Stop();
+                    Invoke("HurtEnding", 1.0f);
+                }
             }
         }
         else if (attack == true)
@@ -197,5 +213,12 @@ public class Player : MonoBehaviour
     {
         moveSpeed = 5.0f;
         jumpSpeed = 5.0f;
+    }
+
+    private void HurtEnding()
+    {
+        hurt = false;
+        animator.SetBool("Hurt", false);
+        input = true;
     }
 }

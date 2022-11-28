@@ -95,6 +95,11 @@ public class Enemy : MonoBehaviour
         runaway = true;
     }
 
+    public void Recover()
+    {
+        runaway = false;
+    }
+
     public void Stop()
     {
         stop = true;

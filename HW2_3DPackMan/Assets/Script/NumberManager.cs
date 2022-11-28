@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class NumberManager : MonoBehaviour
 {
+    private Text bestScoreText;
     private Text scoreText;
     private Text livesText;
     private int score = 0;
@@ -18,11 +19,13 @@ public class NumberManager : MonoBehaviour
         this.scoreText = GameObject.Find("Score").GetComponent<Text>();
         this.livesText = GameObject.Find("Lives").GetComponent<Text>();
         livesText.text = "남은 횟수 " + lives;
-        if(!PlayerPrefs.HasKey("BestScore"))
+        if (!PlayerPrefs.HasKey("BestScore"))
         {
             PlayerPrefs.SetInt("BestScore", 0);
         }
         saveScore = PlayerPrefs.GetInt("BestScore");
+        this.bestScoreText = GameObject.Find("BestScore").GetComponent<Text>();
+        this.bestScoreText.text = "최고 점수 " + saveScore.ToString();
 
     }
 
