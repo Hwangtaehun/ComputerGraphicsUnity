@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
                 GameObject cube3 = GameObject.Find("UpDownCube");
                 cube3.GetComponent<CubeUpDown>().moveStop();
                 animator.SetBool("AttackTime", true);
-                Invoke("attackactionstop", 2.0f);
+                Invoke("attackactionstop", 2.5f);
                 attack = true;
                 working = false;
             }
