@@ -145,9 +145,9 @@ public class Player : MonoBehaviour
                     hurt = true;
                     input = false;
                     GameObject enemy = GameObject.Find("Enemy");
-                    enemy.GetComponent<Enemy>().Stop();
+                    enemy.GetComponent<Enemy>().RunTure();
                     GameObject enemy2 = GameObject.Find("Enemy2");
-                    enemy2.GetComponent<Enemy>().Stop();
+                    enemy2.GetComponent<Enemy>().RunTure();
                     Invoke("HurtEnding", 1.0f);
                 }
             }
@@ -197,6 +197,15 @@ public class Player : MonoBehaviour
         hurt = false;
         animator.SetBool("Hurt", false);
         input = true;
+        Invoke("EnemyHurt", 2.0f);
+    }
+
+    private void EnemyHurt()
+    {
+        GameObject enemy = GameObject.Find("Enemy");
+        enemy.GetComponent<Enemy>().Recover();
+        GameObject enemy2 = GameObject.Find("Enemy2");
+        enemy2.GetComponent<Enemy>().Recover();
     }
 
     public void Attack()
