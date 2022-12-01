@@ -5,18 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    private CharacterController characterController;
+    private Animator animator;
+    private float ySpeed;
+    private float originalStepOffset;
+    private bool slideing = false;
+    private bool attack = false;
+    private bool input = true;
+    private bool hurt = false;
+
     public float moveSpeed = 5f; // 이동 속도 지정
     public float rotationSpeed = 360f; // 회전 속도 지정
     public float jumpSpeed;
-
-    CharacterController characterController;
-    Animator animator;
-    float ySpeed;
-    float originalStepOffset;
-    bool slideing = false;
-    bool attack = false;
-    bool input = true;
-    bool hurt = false;
 
     void Start()
     {

@@ -65,6 +65,8 @@ public class NumberManager : MonoBehaviour
                 cube3.GetComponent<CubeUpDown>().moveStop();
                 GameObject Player = GameObject.Find("Player");
                 Player.GetComponent<Player>().Attack();
+                GameObject m_light = GameObject.Find("GameManager");
+                m_light.GetComponent<LightController>().DisenableLight();
             }
         }
     }

@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - Enemy
     - GameManager
     - ItemDestroy
+    - LightController
     - NumberManager
     - Player
     - RandomDot
@@ -21,10 +22,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -207,6 +206,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3954}
     - Class: 114
       Script: {instanceID: 4524}
+    - Class: 114
+      Script: {instanceID: 112468}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -372,7 +373,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2890}
     - Class: 114
-      Script: {instanceID: 20214}
+      Script: {instanceID: 135120}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -906,6 +907,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NumberManager
+  - hash:
+      serializedVersion: 2
+      Hash: 3c48499c083948bb6b9c7b03032b51e3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LightController
   platform: 5
   scenePathNames:
   - Assets/Scenes/Title.unity
