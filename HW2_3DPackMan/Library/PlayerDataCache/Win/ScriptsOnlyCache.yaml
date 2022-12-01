@@ -65,8 +65,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -195,19 +193,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2922}
     - Class: 114
-      Script: {instanceID: 3206}
+      Script: {instanceID: 2960}
     - Class: 114
-      Script: {instanceID: 3434}
+      Script: {instanceID: 3208}
     - Class: 114
-      Script: {instanceID: 3818}
+      Script: {instanceID: 3436}
     - Class: 114
-      Script: {instanceID: 3868}
+      Script: {instanceID: 3820}
     - Class: 114
-      Script: {instanceID: 3954}
+      Script: {instanceID: 3870}
     - Class: 114
-      Script: {instanceID: 4524}
+      Script: {instanceID: 3956}
     - Class: 114
-      Script: {instanceID: 112468}
+      Script: {instanceID: 4526}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -266,8 +264,6 @@ ScriptsOnlyBuild:
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
-      Script: {instanceID: 0}
-    - Class: 89
       Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
@@ -373,7 +369,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2890}
     - Class: 114
-      Script: {instanceID: 135120}
+      Script: {instanceID: 22026}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -675,6 +671,12 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
+      Hash: 3c48499c083948bb6b9c7b03032b51e3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LightController
+  - hash:
+      serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -907,12 +909,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NumberManager
-  - hash:
-      serializedVersion: 2
-      Hash: 3c48499c083948bb6b9c7b03032b51e3
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: LightController
   platform: 5
   scenePathNames:
   - Assets/Scenes/Title.unity
