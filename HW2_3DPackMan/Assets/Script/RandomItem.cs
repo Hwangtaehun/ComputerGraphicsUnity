@@ -27,25 +27,25 @@ public class RandomItem : MonoBehaviour
             float z = Random.Range(4.0f, -1.45f);
             transform.position = new Vector3(x, 1.45f, z);
             //transform.position = new Vector3(x, 1.6f, z);
-            if (dice <= 3)
-            {
-                Instantiate(prefabScoreAdd, transform.position, transform.rotation);
-            }
-            else if (dice > 3 && dice <= 6)
-            {
-                Instantiate(prefabPlayerstop, transform.position, transform.rotation);
-            }
-            else if (dice > 6 && dice <= 9)
-            {
-                Instantiate(prefabEnemystop, transform.position, transform.rotation);
-            }
-            else
-            {
-                Instantiate(prefabPlayerspeed, transform.position, transform.rotation);
-            }
-            yield return wait;
-            //Instantiate(prefabEnemystop, transform.position, transform.rotation);
+            //if (dice <= 3)
+            //{
+            //    Instantiate(prefabScoreAdd, transform.position, transform.rotation);
+            //}
+            //else if (dice > 3 && dice <= 6)
+            //{
+            //    Instantiate(prefabPlayerstop, transform.position, transform.rotation);
+            //}
+            //else if (dice > 6 && dice <= 9)
+            //{
+            //    Instantiate(prefabEnemystop, transform.position, transform.rotation);
+            //}
+            //else
+            //{
+            //    Instantiate(prefabPlayerspeed, transform.position, transform.rotation);
+            //}
             //yield return wait;
+            Instantiate(prefabEnemystop, transform.position, transform.rotation);
+            yield return wait;
         }
     }
 }

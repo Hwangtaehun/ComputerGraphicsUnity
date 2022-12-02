@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public GameObject target;
+    public GameObject Enemyname;
     NavMeshAgent agent;
     Animator animator; 
     Collider EnemyCd;
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
         //enemyTime += Time.deltaTime;
         if (stop == true)
         {
+            agent.isStopped = true;
             enemySpeed = 0.0f;
             agent.speed = enemySpeed;
             animator.SetFloat("Speed", agent.velocity.magnitude);
@@ -55,6 +57,7 @@ public class Enemy : MonoBehaviour
         {
             transform.GetChild(0).gameObject.SetActive(false);
             EnemyCd.enabled = false;
+            Enemyname.SetActive(false);
         }
 
         if(transform.position.x <= -9.0 && transform.position.z >= 6.5)
@@ -113,6 +116,7 @@ public class Enemy : MonoBehaviour
     private void Go()
     {
         stop = false;
+        agent.isStopped = false;
         enemySpeed = 3.5f;
         agent.speed = enemySpeed;
     }
