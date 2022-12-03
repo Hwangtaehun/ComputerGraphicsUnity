@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - CubeMoveZ
     - CubeUpDown
     - Enemy
+    - EnemyColor
     - GameManager
     - ItemDestroy
     - LightController
@@ -28,10 +29,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -207,17 +206,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3234}
     - Class: 114
-      Script: {instanceID: 3462}
+      Script: {instanceID: 3236}
     - Class: 114
-      Script: {instanceID: 3846}
+      Script: {instanceID: 3464}
     - Class: 114
-      Script: {instanceID: 3896}
+      Script: {instanceID: 3848}
     - Class: 114
-      Script: {instanceID: 3982}
+      Script: {instanceID: 3898}
     - Class: 114
-      Script: {instanceID: 4184}
+      Script: {instanceID: 3984}
     - Class: 114
-      Script: {instanceID: 4554}
+      Script: {instanceID: 4186}
+    - Class: 114
+      Script: {instanceID: 4556}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -387,11 +388,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2916}
     - Class: 114
-      Script: {instanceID: 3874}
+      Script: {instanceID: 3876}
     - Class: 114
-      Script: {instanceID: 4144}
+      Script: {instanceID: 4146}
     - Class: 114
-      Script: {instanceID: 255402}
+      Script: {instanceID: 40566}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -733,6 +734,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: BaseInput
+  - hash:
+      serializedVersion: 2
+      Hash: a4ed664fdef9571ab3100e252e08fa59
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyColor
   - hash:
       serializedVersion: 2
       Hash: d3716208cd014eb5345cbfe50f18d6ff

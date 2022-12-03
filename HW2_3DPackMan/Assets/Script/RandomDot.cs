@@ -14,7 +14,7 @@ public class RandomDot : MonoBehaviour
         GameObject dot1 = Instantiate(DotPrefab);
         dot1.transform.position = new Vector3(6.05f, 4.0f, 5.0f);
 
-        CreateRandom(1, 25);
+        CreateRandom(1, 22);
 
         for (int i = 0; i < dotcount; i++)
         {
@@ -67,25 +67,25 @@ public class RandomDot : MonoBehaviour
                 case 15:
                     transform.position = new Vector3(1.5f, 2.0f, 0.5f);
                     break;
-                case 17:
+                case 16:
                     transform.position = new Vector3(4.5f, 2.0f, -1.0f);
                     break;
-                case 18:
+                case 17:
                     transform.position = new Vector3(4.5f, 2.0f, 0.5f);
                     break;
-                case 20:
+                case 18:
                     transform.position = new Vector3(4.5f, 2.0f, 2.0f);
                     break;
-                case 21:
+                case 19:
                     transform.position = new Vector3(3.0f, 2.0f, 5.0f);
                     break;
-                case 22:
+                case 20:
                     transform.position = new Vector3(6.0f, 2.0f, 2.0f);
                     break;
-                case 23:
+                case 21:
                     transform.position = new Vector3(1.5f, 2.0f, 3.5f);
                     break;
-                case 25:
+                case 22:
                     transform.position = new Vector3(6.0f, 2.0f, -1.0f);
                     break;
             }
