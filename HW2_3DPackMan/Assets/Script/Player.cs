@@ -109,10 +109,9 @@ public class Player : MonoBehaviour
         }
         else if(other.tag == "PlayerStop")
         {
-            moveSpeed = 0.0f;
-            jumpSpeed = 0.0f;
+            input = false;
             Destroy(other.gameObject);
-            Invoke("speedOrigin", 2.5f);
+            Invoke("inputOrigin", 2.5f);
         }
         else if(other.tag == "PlayerSpeed")
         {
@@ -190,6 +189,11 @@ public class Player : MonoBehaviour
     {
         moveSpeed = 5.0f;
         jumpSpeed = 5.0f;
+    }
+
+    private void inputOrigin()
+    {
+        input = true;
     }
 
     private void HurtEnding()

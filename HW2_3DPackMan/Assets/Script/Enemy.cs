@@ -30,8 +30,7 @@ public class Enemy : MonoBehaviour
         if (stop == true)
         {
             agent.isStopped = true;
-            enemySpeed = 0.0f;
-            agent.speed = enemySpeed;
+            agent.speed = 0.0f;
             animator.SetFloat("Speed", agent.velocity.magnitude);
             Invoke("Go", 5.0f);
             //if(enemyTime > 5.0f)
@@ -116,9 +115,8 @@ public class Enemy : MonoBehaviour
     private void Go()
     {
         stop = false;
-        agent.isStopped = false;
-        enemySpeed = 3.5f;
         agent.speed = enemySpeed;
+        agent.isStopped = false;
     }
 
     private void Turn()

@@ -44,7 +44,7 @@ public class RandomItem : MonoBehaviour
             //    Instantiate(prefabPlayerspeed, transform.position, transform.rotation);
             //}
             //yield return wait;
-            Instantiate(prefabEnemystop, transform.position, transform.rotation);
+            Instantiate(prefabPlayerstop, transform.position, transform.rotation);
             yield return wait;
         }
     }
