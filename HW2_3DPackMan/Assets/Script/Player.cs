@@ -79,8 +79,10 @@ public class Player : MonoBehaviour
 
             characterController.Move(velocity);
 
+            Vector3 horizontalVelocity = characterController.velocity;
+            horizontalVelocity = new Vector3(characterController.velocity.x, 0, characterController.velocity.z);
             // Speed 파라미터를 통해 현재 속도의 크기(Character Controller)를 전달
-            animator.SetFloat("Speed", characterController.velocity.magnitude);
+            animator.SetFloat("Speed", horizontalVelocity.magnitude);
 
             if (transform.position.y < 0)
             {
@@ -109,9 +111,10 @@ public class Player : MonoBehaviour
         }
         else if(other.tag == "PlayerStop")
         {
-            input = false;
+            moveSpeed = 0.0f;
+            jumpSpeed = 0.0f;
             Destroy(other.gameObject);
-            Invoke("inputOrigin", 2.5f);
+            Invoke("speedOrigin", 2.5f);
         }
         else if(other.tag == "PlayerSpeed")
         {
@@ -191,13 +194,9 @@ public class Player : MonoBehaviour
         jumpSpeed = 5.0f;
     }
 
-    private void inputOrigin()
-    {
-        input = true;
-    }
-
     private void HurtEnding()
     {
+        speedOrigin();
         hurt = false;
         animator.SetBool("Hurt", false);
         input = true;
