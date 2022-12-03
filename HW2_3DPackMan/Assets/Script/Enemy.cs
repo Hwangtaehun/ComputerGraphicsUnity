@@ -5,16 +5,16 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    private NavMeshAgent agent;
+    private Animator animator;
+    private Collider EnemyCd;
+    private bool runaway = false;
+    private bool destory = false;
+    private float enemySpeed = 3.5f;
+
     public GameObject target;
     public GameObject Enemyname;
-    NavMeshAgent agent;
-    Animator animator; 
-    Collider EnemyCd;
-    bool runaway = false;
-    bool stop = false;
-    bool destory = false;
-    float enemySpeed = 3.5f;
-    //float enemyTime = 0.0f;
+    //public Color Enemycolor;
 
     void Start()
     {
@@ -22,37 +22,23 @@ public class Enemy : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         EnemyCd = GetComponent<Collider>();
         agent.speed = enemySpeed;
+        //MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+        //for (int i = 0; i < renderers.Length; i++)
+        //    renderers[i].material.color = Enemycolor;
     }
 
     void Update()
     {
-        //enemyTime += Time.deltaTime;
-        if (stop == true)
+        if (runaway == false)
         {
-            agent.isStopped = true;
-            agent.speed = 0.0f;
-            animator.SetFloat("Speed", agent.velocity.magnitude);
-            Invoke("Go", 5.0f);
-            //if(enemyTime > 5.0f)
-            //{
-            //    Debug.Log(enemyTime);
-            //    enemyTime = 0.0f;
-            //    Go();
-            //}
+            Chase();
         }
-        else if(stop == false)
+        else
         {
-            if (runaway == false)
-            {
-                Chase();
-            }
-            else
-            {
-                RunAway();
-            }
+            RunAway();
         }
 
-        if(destory == true)
+        if (destory == true)
         {
             transform.GetChild(0).gameObject.SetActive(false);
             EnemyCd.enabled = false;
@@ -104,7 +90,9 @@ public class Enemy : MonoBehaviour
 
     public void Stop()
     {
-        stop = true;
+        agent.isStopped = true;
+        agent.speed = 0.0f;
+        Invoke("Go", 5.0f);
     }
 
     public void Destory()
@@ -114,9 +102,9 @@ public class Enemy : MonoBehaviour
 
     private void Go()
     {
-        stop = false;
         agent.speed = enemySpeed;
         agent.isStopped = false;
+        //agent.enabled = true;
     }
 
     private void Turn()
@@ -125,3 +113,30 @@ public class Enemy : MonoBehaviour
         Invoke("RunAway", 2.0f);
     }
 }
+
+//private bool stop = false;
+//enemyTime += Time.deltaTime;
+//if (stop == true)
+//{
+//    agent.enabled = false;
+//    agent.speed = 0.0f;
+//    animator.SetFloat("Speed", agent.velocity.magnitude);
+//    Invoke("Go", 5.0f);
+//    //if(enemyTime > 5.0f)
+//    //{
+//    //    Debug.Log(enemyTime);
+//    //    enemyTime = 0.0f;
+//    //    Go();
+//    //}
+//}
+//else if(stop == false)
+//{
+//    if (runaway == false)
+//    {
+//        Chase();
+//    }
+//    else
+//    {
+//        RunAway();
+//    }
+//}
