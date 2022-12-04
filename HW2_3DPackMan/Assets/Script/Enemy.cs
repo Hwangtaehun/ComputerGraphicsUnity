@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
 
     public GameObject target;
     public GameObject Enemyname;
-    //public Color Enemycolor;
 
     void Start()
     {
@@ -22,9 +21,6 @@ public class Enemy : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         EnemyCd = GetComponent<Collider>();
         agent.speed = enemySpeed;
-        //MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
-        //for (int i = 0; i < renderers.Length; i++)
-        //    renderers[i].material.color = Enemycolor;
     }
 
     void Update()
@@ -104,7 +100,6 @@ public class Enemy : MonoBehaviour
     {
         agent.speed = enemySpeed;
         agent.isStopped = false;
-        //agent.enabled = true;
     }
 
     private void Turn()
@@ -129,6 +124,9 @@ public class Enemy : MonoBehaviour
 //    //    Go();
 //    //}
 //}
+
+//agent.enabled = true;
+
 //else if(stop == false)
 //{
 //    if (runaway == false)
@@ -140,3 +138,8 @@ public class Enemy : MonoBehaviour
 //        RunAway();
 //    }
 //}
+
+//public Color Enemycolor;
+//MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+//for (int i = 0; i < renderers.Length; i++)
+//    renderers[i].material.color = Enemycolor;

@@ -9,13 +9,11 @@ public class TimeManger : MonoBehaviour
     private Text timerText;
     private float time = 180.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         this.timerText = GameObject.Find("Time").GetComponent<Text>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         IncTimer();

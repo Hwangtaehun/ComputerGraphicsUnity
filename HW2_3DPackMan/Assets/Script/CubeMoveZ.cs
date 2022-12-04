@@ -12,14 +12,12 @@ public class CubeMoveZ : MonoBehaviour
     [Range(1, 10)]
     public float moveSpeed = 5.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         currentPosition = transform.position.z;
         originSpeed = moveSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentPosition += Time.deltaTime * moveSpeed;

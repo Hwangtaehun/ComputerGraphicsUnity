@@ -392,7 +392,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4146}
     - Class: 114
-      Script: {instanceID: 40566}
+      Script: {instanceID: 109246}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -682,7 +682,7 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 459b50185a167c1d210a783633c72823
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ItemDestroy

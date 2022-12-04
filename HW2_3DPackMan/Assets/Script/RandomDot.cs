@@ -14,7 +14,7 @@ public class RandomDot : MonoBehaviour
         GameObject dot1 = Instantiate(DotPrefab);
         dot1.transform.position = new Vector3(6.05f, 4.0f, 5.0f);
 
-        CreateRandom(1, 22);
+        CreateRandom(1, 32);
 
         for (int i = 0; i < dotcount; i++)
         {
@@ -88,12 +88,38 @@ public class RandomDot : MonoBehaviour
                 case 22:
                     transform.position = new Vector3(6.0f, 2.0f, -1.0f);
                     break;
+                case 23:
+                    transform.position = new Vector3(7.5f, 2.0f, 5.0f);
+                    break;
+                case 24:
+                    transform.position = new Vector3(7.5f, 2.0f, 3.5f);
+                    break;
+                case 25:
+                    transform.position = new Vector3(7.5f, 2.0f, 2.0f);
+                    break;
+                case 26:
+                    transform.position = new Vector3(7.5f, 2.0f, 0.5f);
+                    break;
+                case 27:
+                    transform.position = new Vector3(7.5f, 2.0f, -1.0f);
+                    break;
+                case 28:
+                    transform.position = new Vector3(-7.5f, 2.0f, 5.0f);
+                    break;
+                case 29:
+                    transform.position = new Vector3(-7.5f, 2.0f, 3.5f);
+                    break;
+                case 30:
+                    transform.position = new Vector3(-7.5f, 2.0f, 2.0f);
+                    break;
+                case 31:
+                    transform.position = new Vector3(-7.5f, 2.0f, 0.5f);
+                    break;
+                case 32:
+                    transform.position = new Vector3(-7.5f, 2.0f, -1.0f);
+                    break;
             }
             Instantiate(DotPrefab, transform.position, transform.rotation);
-            //float x = Random.Range(-7.5f, 7.5f);
-            //float z = Random.Range(-1.0f, 5.0f);
-            //GameObject dot = Instantiate(DotPrefab);
-            //dot.transform.position = new Vector3(x, 2.0f, z);
         }
     }
 
@@ -115,3 +141,8 @@ public class RandomDot : MonoBehaviour
         }
     }
 }
+
+//float x = Random.Range(-7.5f, 7.5f);
+//float z = Random.Range(-1.0f, 5.0f);
+//GameObject dot = Instantiate(DotPrefab);
+//dot.transform.position = new Vector3(x, 2.0f, z);
